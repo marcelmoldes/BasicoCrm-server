@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      tenantId: {
+      tenant_id: {
         type: Sequelize.INTEGER
       },
       field: {
@@ -18,11 +18,11 @@ module.exports = {
       value: {
         type: Sequelize.DECIMAL
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

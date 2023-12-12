@@ -9,19 +9,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      accountId: {
+      account_id: {
         type: Sequelize.INTEGER
       },
-      ownerId: {
+      owner_id: {
         type: Sequelize.INTEGER
       },
-      addressId: {
+      address_id: {
         type: Sequelize.INTEGER
       },
-      firstName: {
+      first_name: {
         type: Sequelize.STRING
       },
-      lastName: {
+      last_name: {
         type: Sequelize.STRING
       },
       title: {
@@ -30,19 +30,19 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      phoneId: {
+      phone_id: {
         type: Sequelize.INTEGER
       },
-      leadSource: {
+      lead_source: {
         type: Sequelize.STRING
       },
       website: {
         type: Sequelize.STRING
       },
-      annualRevenue: {
+      annual_revenue: {
         type: Sequelize.DECIMAL
       },
-      leadStatus: {
+      lead_status: {
         type: Sequelize.STRING
       },
       industry: {
@@ -51,14 +51,14 @@ module.exports = {
       notes: {
         type: Sequelize.STRING
       },
-      isLead: {
+      is_lead: {
         type: Sequelize.BOOLEAN
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

@@ -9,20 +9,38 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      contact_id: {
+        type: Sequelize.INTEGER
+      },
+      owner_id: {
+        type: Sequelize.INTEGER
+      },
+      deal_id: {
+        type: Sequelize.INTEGER
+      },
+      account_id: {
+        type: Sequelize.INTEGER
+      },
+      name: {
         type: Sequelize.STRING
       },
-      lastName: {
+      description: {
         type: Sequelize.STRING
       },
-      email: {
+      due_date: {
+        type: Sequelize.DATE
+      },
+      status: {
         type: Sequelize.STRING
       },
-      createdAt: {
+      priority: {
+        type: Sequelize.STRING
+      },
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

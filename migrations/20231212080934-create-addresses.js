@@ -9,10 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      streetAddress1: {
+      street_address1: {
         type: Sequelize.STRING
       },
-      streetAddress2: {
+      street_address2: {
         type: Sequelize.STRING
       },
       state: {
@@ -25,11 +25,11 @@ module.exports = {
       country: {
         type: Sequelize.STRING
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

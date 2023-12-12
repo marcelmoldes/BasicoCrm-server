@@ -9,13 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ownerId: {
+      owner_id: {
         type: Sequelize.INTEGER
       },
-      addressId: {
+      address_id: {
         type: Sequelize.INTEGER
       },
-      phoneId: {
+      phone_id: {
         type: Sequelize.INTEGER
       },
       name: {
@@ -30,17 +30,17 @@ module.exports = {
       industry: {
         type: Sequelize.STRING
       },
-      annualRevenue: {
+      annual_revenue: {
         type: Sequelize.DECIMAL
       },
       employees: {
         type: Sequelize.DECIMAL
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

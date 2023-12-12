@@ -15,20 +15,20 @@ module.exports = {
       path: {
         type: Sequelize.STRING
       },
-      dealId: {
+      deal_id: {
         type: Sequelize.INTEGER
       },
-      accountId: {
+      account_id: {
         type: Sequelize.INTEGER
       },
-      contactId: {
+      contact_id: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

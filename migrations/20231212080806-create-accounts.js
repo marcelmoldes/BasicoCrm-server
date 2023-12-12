@@ -12,22 +12,20 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      ownerId: {
+      owner_id: {
         type: Sequelize.INTEGER
       },
-      phoneId: {
+      phone_id: {
         type: Sequelize.INTEGER
       },
       website: {
         type: Sequelize.STRING
       },
-      type: {
-        type: Sequelize.STRING
-      },
+
       industry: {
         type: Sequelize.STRING
       },
-      annualRevenue: {
+      annual_revenue: {
         type: Sequelize.DECIMAL
       },
       employees: {
@@ -36,14 +34,14 @@ module.exports = {
       notes: {
         type: Sequelize.STRING
       },
-      addressId: {
+      address_id: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

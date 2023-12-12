@@ -9,17 +9,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ownerId: {
+      owner_id: {
         type: Sequelize.STRING
       },
-      accountId: {
+      account_id: {
         type: Sequelize.STRING
       },
-      dealName: {
+      deal_name: {
         type: Sequelize.STRING
       },
 
-      dealValue: {
+      deal_value: {
         type: Sequelize.DECIMAL
       },
 
@@ -27,14 +27,14 @@ module.exports = {
         type: Sequelize.STRING
       },
 
-      closeDate: {
+      close_date: {
         type: Sequelize.DATE
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

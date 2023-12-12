@@ -9,16 +9,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ownerId: {
+      owner_id: {
         type: Sequelize.INTEGER
       },
-      contactId: {
+      contact_id: {
         type: Sequelize.INTEGER
       },
-      accountId: {
+      account_id: {
         type: Sequelize.INTEGER
       },
-      dealId: {
+      deal_id: {
         type: Sequelize.INTEGER
       },
       subject: {
@@ -27,7 +27,7 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      activityDate: {
+      activity_date: {
         type: Sequelize.DATE
       },
       location: {
@@ -39,11 +39,11 @@ module.exports = {
       notes: {
         type: Sequelize.STRING
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

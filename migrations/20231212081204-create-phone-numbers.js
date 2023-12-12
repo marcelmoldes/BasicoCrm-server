@@ -9,19 +9,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      countryCode: {
+      country_code: {
         type: Sequelize.STRING
       },
       number: {
         type: Sequelize.DECIMAL(14)
       },
 
-      createdAt: {
+      created_at: {
 
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
