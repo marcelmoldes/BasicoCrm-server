@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     contactId: DataTypes.INTEGER,
   }, {
     sequelize,
+    underscored: true,
     modelName: 'Attachments',
   });
   return Attachments;

@@ -9,6 +9,11 @@ app.use(cors());
 
 
 require("./routes/users.js")(app);
+require("./routes/tasks.js")(app);
+require("./routes/deals.js")(app);
+require("./routes/contacts.js")(app);
+require("./routes/activities.js")(app);
+require("./routes/accounts.js")(app);
 
 app.listen(8081);
 console.log("Server Working")

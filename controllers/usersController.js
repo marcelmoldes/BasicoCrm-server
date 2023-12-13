@@ -35,5 +35,57 @@ module.exports = {
         }
     },
 
+    async findAllUsers(req, res) {
+        try {
+            const users = await Users.findAll();
+            return res.send({
+                success: true,
+                users
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message,
+            });
+        }
+    },
+
+    async findOneUser(req, res) {
+        try {
+            const user = await Users.findByPk(req.params.id)
+            return res.send({
+                success: true,
+                user
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message,
+            });
+        }
+    },
+
+    async updateUser(req, res) {
+        try {
+
+
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message,
+            });
+        }
+    },
+    async removeUser(req, res) {
+        try {
+
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message,
+            });
+        }
+    },
+
 
 };

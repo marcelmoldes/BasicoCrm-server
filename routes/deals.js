@@ -1,10 +1,10 @@
 const DealsController = require("../controllers/dealsController")
-const ContactsController = require("../controllers/contactsController");
+
 
 module.exports = (app) => {
     app.get("/deals", DealsController.findAllDeals);
     app.get("/deals/:id", DealsController.findOneDeal);
     app.post("/deals", DealsController.createDeal)
-    app.put("/deals/:id", DealsController.updateDeal);
-    app.delete("/deals/:id,",DealsController.removeDeal)
+    //app.put("/deals/:id", DealsController.updateDeal);
+   // app.delete("/deals/:id,",DealsController.removeDeal)
 }

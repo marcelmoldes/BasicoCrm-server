@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     isLead: DataTypes.BOOLEAN,
   }, {
     sequelize,
+    underscored: true,
     modelName: 'Contacts',
   });
   return Contacts;

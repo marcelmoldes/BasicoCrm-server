@@ -14,17 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Deals.init({
-    ownerId: DataTypes.INTEGER,
-    accountId: DataTypes.INTEGER,
-    dealName: DataTypes.STRING(100),
-    dealValue: DataTypes.DECIMAL(15),
-    closeDate: DataTypes.DATE,
+    owner_id: DataTypes.INTEGER,
+    account_id: DataTypes.INTEGER,
+    deal_name: DataTypes.STRING(100),
+    deal_value: DataTypes.DECIMAL(15),
+    close_date: DataTypes.DATE,
     status: DataTypes.STRING
 
 
 
   }, {
     sequelize,
+    underscored: true,
     modelName: 'Deals',
   });
   return Deals;
