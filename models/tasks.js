@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     accountId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     description: DataTypes.STRING,
-    dueDate: DataTypes.DATETIME,
+    dueDate: DataTypes.DATE,
     status: DataTypes.STRING,
     priority: DataTypes.STRING
   }, {

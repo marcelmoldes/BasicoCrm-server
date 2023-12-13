@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     leadStatus: DataTypes.STRING(40),
     industry: DataTypes.STRING(40),
     notes: DataTypes.STRING,
-    isLead: DataTypes.BOOL,
+    isLead: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Contacts',

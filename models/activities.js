@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     dealId: DataTypes.INTEGER,
     subject: DataTypes.STRING(100),
     description: DataTypes.STRING,
-    activityDate: DataTypes.DATETIME,
+    activityDate: DataTypes.DATE,
     location: DataTypes.STRING(100),
     status: DataTypes.STRING(40),
     notes: DataTypes.STRING,
