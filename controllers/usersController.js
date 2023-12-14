@@ -1,6 +1,6 @@
-const {Users, Tasks} = require('../models')
-const jwtSecret = process.env.JWT_SECRET;
-const jwt = require("jsonwebtoken");
+const {Users} = require('../models')
+//const jwtSecret = process.env.JWT_SECRET;
+//const jwt = require("jsonwebtoken");
 module.exports = {
     async createUser(req, res) {
         try {
@@ -9,14 +9,8 @@ module.exports = {
                     email: req.body.email
                 },
             });
-            const userFound = await Users.findOne({
-                where: {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                },
-            });
 
-            if (emailFound || userFound) {
+            if (emailFound) {
                 return res.send({
                     success: false,
                     error: "This user already exists!",
@@ -114,37 +108,4 @@ module.exports = {
             });
         }
     },
-
-
-    //async login(req, res) {
-    // try {
-    //    const user = await Users.findOne({
-    //     where: {
-    //       email: req.body.email,
-    //        password: req.body.password,
-    //     },
-    // });
-
-    //  if (user) {
-    //     let token = jwt.sign(user.toJSON(), jwtSecret);
-    //   user.set("password", null);
-    //   return res.send({
-    //    user:user,
-    //      token,
-    //     success: true,
-    //  });
-    //  } else {
-    //     return res.send({
-    //        success: false,
-    //        error: "This password or email are incorrects",
-    //    });
-    //    }
-    //  } catch (error) {
-    //  return res.send({
-    //       success: false,
-    //        error: error.message,
-    //     });
-    //     }
-    //   },
-
 };

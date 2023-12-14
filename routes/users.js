@@ -10,5 +10,4 @@ module.exports = (app) => {
     //app.post("/users/login", UsersController.login);
    // app.post("/users/:id/changePassword", UsersController.changePassword);
    // app.post("/users/:id/forgotPassword", UsersController.forgotPassword);
-
 }
