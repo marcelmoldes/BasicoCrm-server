@@ -1,13 +1,10 @@
-const UsersController = require("../controllers/usersController")
-
+const Controller = require("../controllers/usersController")
+const resource = 'users';
 
 module.exports = (app) => {
-    app.get("/users", UsersController.findAllUsers);
-    app.get("/users/:id", UsersController.findOneUser);
-    app.post("/users", UsersController.createUser)
-    app.put("/users/:id", UsersController.updateUser);
-    app.delete("/users/:id",UsersController.removeUser)
-    //app.post("/users/login", UsersController.login);
-   // app.post("/users/:id/changePassword", UsersController.changePassword);
-   // app.post("/users/:id/forgotPassword", UsersController.forgotPassword);
+    app.get(`/${resource}`, Controller.findAll);
+    app.get(`/${resource}/:id`, Controller.findOne);
+    app.post(`/${resource}`, Controller.create)
+    app.put(`/${resource}/:id`, Controller.update);
+    app.delete(`/${resource}/:id`, Controller.remove)
 }

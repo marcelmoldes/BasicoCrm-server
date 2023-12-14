@@ -1,27 +1,15 @@
-const {Users} = require('../models')
-//const jwtSecret = process.env.JWT_SECRET;
-//const jwt = require("jsonwebtoken");
-module.exports = {
-    async createUser(req, res) {
-        try {
-            const emailFound = await Users.findOne({
-                where: {
-                    email: req.body.email
-                },
-            });
+const adminGuard = require('../guards/adminGuard')
+const UsersService = require('../services/usersService.js')
 
-            if (emailFound) {
-                return res.send({
-                    success: false,
-                    error: "This user already exists!",
-                });
-            } else {
-                const user = await Users.create(req.body);
-                return res.send({
-                    success: true,
-                    user,
-                });
-            }
+module.exports = {
+    async create(req, res) {
+        try {
+            await adminGuard(req)
+            const user = await UsersService.create(req.body);
+            return res.send({
+                success: true,
+                user,
+            });
         } catch (error) {
             return res.send({
                 success: false,
@@ -30,9 +18,10 @@ module.exports = {
         }
     },
 
-    async findAllUsers(req, res) {
+    async findAll(req, res) {
         try {
-            const users = await Users.findAll();
+            await adminGuard(req)
+            const users = await UsersService.findAll();
             return res.send({
                 success: true,
                 users
@@ -45,9 +34,10 @@ module.exports = {
         }
     },
 
-    async findOneUser(req, res) {
+    async findOne(req, res) {
         try {
-            const user = await Users.findByPk(req.params.id)
+            await adminGuard(req)
+            const user = await UsersService.findByPk(req.params.id)
             return res.send({
                 success: true,
                 user
@@ -60,14 +50,10 @@ module.exports = {
         }
     },
 
-    async updateUser(req, res) {
+    async update(req, res) {
         try {
-            const user = await Users.findByPk(req.params.id)
-            user.first_name = req.body.first_name;
-            user.last_name = req.body.last_name;
-            user.email = req.body.email;
-
-            await user.save()
+            await adminGuard(req)
+            const user = await UsersService.update(req.body, req.params.id);
             return res.send({
                 success: true,
                 user
@@ -79,27 +65,12 @@ module.exports = {
             });
         }
     },
-    async removeUser(req, res) {
+    async remove(req, res) {
         try {
-            const userFound = await Users.findOne({
-                where: {
-                    id: req.params.id
-                }
-            });
-            if (!userFound) {
-                return res.send({
-                    success: false,
-                    error: "User not found"
-                })
-            }
-            const removeUser = await Users.destroy({
-                where: {
-                    id: req.params.id
-                }
-            });
+            await adminGuard(req)
+            await UsersService.remove(req.params.id);
             return res.send({
-                success: true,
-                removeUser
+                success: true
             })
         } catch (error) {
             return res.send({
