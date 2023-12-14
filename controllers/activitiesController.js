@@ -1,7 +1,7 @@
-    const {Activities} = require('../models')
+    const {Activities, Users, Deals} = require('../models')
 
 module.exports = {
-    async createActivitie(req, res) {
+    async createActivity(req, res) {
         try {
             const activitieFound = await Activities.findByPk(req.params.id)
             if (activitieFound) {
@@ -41,7 +41,7 @@ module.exports = {
         }
     },
 
-    async findOneActivitie(req, res) {
+    async findOneActivity(req, res) {
         try {
             const  activitie = await Activities.findByPk(req.params.id)
             return res.send({
@@ -55,5 +55,56 @@ module.exports = {
             });
         }
     },
+    async removeActivity(req, res) {
+        try {
+            const activityFound = await Activities.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+            if (!activityFound) {
+                return res.send({
+                    success: false,
+                    error: "Activity not found"
+                })
+            }
+            const removeActivity = await Activities.destroy({
+                where: {
+                    id:req.params.id
+                }
+            });
+            return  res.send({
+                success:true,
+                removeActivity
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message,
+            });
+        }
+    },
+    async updateActivity(req, res) {
+        try {
+            const activity = await Activities.findByPk(req.params.id)
 
+                 activity.subject = req.body.subject,
+                activity.description = req.body.description,
+                activity.activity_date = req.body.activity_date,
+                activity.status = req.body.status,
+                activity.location = req.body.location,
+                activity.notes = req.body.notes,
+                await activity.save()
+            return res.send({
+                success: true,
+                activity
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message
+            })
+        }
+
+    }
 }

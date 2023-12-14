@@ -15,15 +15,15 @@ module.exports = (sequelize, DataTypes) => {
   }
   Accounts.init({
     name: DataTypes.STRING,
-    ownerId: DataTypes.INTEGER,
-    phoneId: DataTypes.INTEGER,
+    owner_id: DataTypes.INTEGER,
+    phone_id: DataTypes.INTEGER,
     website: DataTypes.STRING,
 
     industry: DataTypes.STRING,
-    annualRevenue: DataTypes.DECIMAL(6),
+    annual_revenue: DataTypes.DECIMAL(6),
     employees: DataTypes.DECIMAL,
     notes: DataTypes.STRING,
-    addressId: DataTypes.INTEGER,
+    address_id: DataTypes.INTEGER,
 
 
   }, {
