@@ -1,14 +1,14 @@
-const adminGuard = require('../guards/privateGuard')
-const UsersService = require('../services/usersService.js')
+const privateGuard = require('../guards/privateGuard')
+const ContactsService = require('../services/contactsService.js')
 
 module.exports = {
     async create(req, res) {
         try {
-            await adminGuard(req)
-            const user = await UsersService.create(req.body);
+            await privateGuard(req)
+            const contact = await ContactsService.create(req.body);
             return res.send({
                 success: true,
-                user,
+                contact,
             });
         } catch (error) {
             return res.send({
@@ -20,11 +20,11 @@ module.exports = {
 
     async findAll(req, res) {
         try {
-            await adminGuard(req)
-            const users = await UsersService.findAll();
+            await privateGuard(req)
+            const contacts = await ContactsService.findAll();
             return res.send({
                 success: true,
-                users
+                contacts
             })
         } catch (error) {
             return res.send({
@@ -36,11 +36,11 @@ module.exports = {
 
     async findOne(req, res) {
         try {
-            await adminGuard(req)
-            const user = await UsersService.findByPk(req.params.id)
+            await privateGuard(req)
+            const contact = await ContactsService.findByPk(req.params.id)
             return res.send({
                 success: true,
-                user
+                contact
             })
         } catch (error) {
             return res.send({
@@ -52,11 +52,11 @@ module.exports = {
 
     async update(req, res) {
         try {
-            await adminGuard(req)
-            const user = await UsersService.update(req.body, req.params.id);
+            await privateGuard(req)
+            const contact = await ContactsService.update(req.body, req.params.id);
             return res.send({
                 success: true,
-                user
+                contact
             })
         } catch (error) {
             return res.send({
@@ -67,8 +67,8 @@ module.exports = {
     },
     async remove(req, res) {
         try {
-            await adminGuard(req)
-            await UsersService.remove(req.params.id);
+            await privateGuard(req)
+            await ContactsService.remove(req.params.id);
             return res.send({
                 success: true
             })

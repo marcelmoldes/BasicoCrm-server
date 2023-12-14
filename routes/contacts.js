@@ -1,11 +1,12 @@
-//const ContactsController = require("../controllers/contactsController")
 
+const Controller = require("../controllers/contactsController")
+const resource = 'contacts';
 
 module.exports = (app) => {
-    //app.get("/contacts", ContactsController.findAllContacts);
-  //  app.get("/contacts/:id", ContactsController.findOneContact);
-  //  app.post("/contacts", ContactsController.createContact)
-  //  app.put("/contacts/:id",ContactsController.updateContact);
-   // app.delete("/contacts/:id",ContactsController.removeContact)
+    app.get(`/${resource}`,Controller.findAll);
+    app.get(`/${resource}/:id`, Controller.findOne);
+    app.post(`/${resource}`, Controller.create)
+   app.put(`/${resource}/:id`,Controller.update);
+    app.delete(`/${resource}/:id`,Controller.remove)
 
 }
