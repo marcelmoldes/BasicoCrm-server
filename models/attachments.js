@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   Attachments.init({
     name: DataTypes.STRING(50),
     path: DataTypes.STRING(200),
-    dealId: DataTypes.INTEGER,
-    accountId: DataTypes.INTEGER,
-    contactId: DataTypes.INTEGER,
+    deal_id: DataTypes.INTEGER,
+    account_id: DataTypes.INTEGER,
+    contact_id: DataTypes.INTEGER,
   }, {
     sequelize,
     underscored: true,

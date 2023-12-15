@@ -16,6 +16,11 @@ require("./routes/contacts.js")(app);
 require("./routes/activities.js")(app);
 require("./routes/accounts.js")(app);
 require("./routes/auth.js")(app);
+require("./routes/addresses.js")(app);
+require("./routes/attachments.js")(app);
+require("./routes/listconfigs.js")(app);
+require("./routes/phonenumbers.js")(app);
+require("./routes/tenants.js")(app);
 
 app.listen(8081);
 console.log("Server Working")

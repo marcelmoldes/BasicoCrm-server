@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING(60),
     country:DataTypes.STRING(60),
 
-    postalCode:DataTypes.DECIMAL(4)
+    postal_code:DataTypes.DECIMAL(4)
 
   }, {
     sequelize,

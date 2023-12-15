@@ -14,18 +14,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Tenants.init({
-    "ownerId": DataTypes.INTEGER,
-    "addressId": DataTypes.INTEGER,
-    "phoneId": DataTypes.INTEGER,
+    "owner_id": DataTypes.INTEGER,
+    "address_id": DataTypes.INTEGER,
+    "phone_id": DataTypes.INTEGER,
     "name": DataTypes.STRING(40),
     "website": DataTypes.STRING(250),
     "type": DataTypes.STRING(20),
     "industry": DataTypes.STRING(40),
-    "annualRevenue": DataTypes.DECIMAL(15),
+    "annual_revenue": DataTypes.DECIMAL(15),
     "employees": DataTypes.DECIMAL(10),
 
   }, {
     sequelize,
+    underscored: true,
     modelName: 'Tenants',
   });
   return Tenants;
