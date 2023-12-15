@@ -11,7 +11,7 @@ describe("Users endpoint basic tests", () => {
         "first_name": "Test",
         "last_name": "User",
         "email": "test.user@gmail.com",
-        "password": "12345678"
+        "password": "123456"
     }
     beforeAll(async () => {
         const credentials = {
@@ -23,7 +23,7 @@ describe("Users endpoint basic tests", () => {
     })
     it("POST /users", async () => {
         const response = await axios.post(`${baseURL}/users`, newUser, options);
-        newUser.id = response.data.user.id;
+        newUser.id = response.data.user?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /users/:id", async () => {

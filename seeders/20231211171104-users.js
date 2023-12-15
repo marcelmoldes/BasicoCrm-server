@@ -30,7 +30,7 @@ module.exports = {
                 first_name,
                 last_name,
                 email,
-                password: "12345",
+                password: "123456",
                 profile_image: profile_image,
                 role,
                 created_at: created_at,
