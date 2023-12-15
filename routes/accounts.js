@@ -1,10 +1,10 @@
-//const AccountsController = require("../controllers/accountsController")
+const Controller = require("../controllers/accountsController")
+const resource = 'accounts';
 
 module.exports = (app) => {
-   // app.get("/accounts", AccountsController.findAll);
-  // app.get("/accounts/:id", AccountsController.findOne);
-  // app.post("/accounts", AccountsController.create)
- // app.put("/accounts/:id", AccountsController.update);
-  //  app.delete("/accounts/:id",AccountsController.remove)
-
+    app.get(`/${resource}`, Controller.findAll);
+    app.get(`/${resource}/:id`, Controller.findOne);
+    app.post(`/${resource}`, Controller.create)
+    app.put(`/${resource}/:id`, Controller.update);
+    app.delete(`/${resource}/:id`, Controller.remove)
 }
