@@ -8,3 +8,7 @@ module.exports = {
     profile_image: Joi.string().base64(),
     role: Joi.string().valid('user', 'admin'),
 }
+
+
+
+

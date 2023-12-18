@@ -1,10 +1,19 @@
 const privateGuard = require('../guards/privateGuard')
 const AttachmentsService = require('../services/attachmentsService.js')
+const attachmentValidatorSchema = require('../validators/attachmentsValidator');
+const { handleJoiErrors } = require("../helpers/validationHelper");
+const Joi = require('joi');
 
 module.exports = {
     async create(req, res) {
         try {
             await privateGuard(req)
+            try {
+                const validator = Joi.object(attachmentValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
             const attachment = await AttachmentsService.create(req.body);
             return res.send({
                 success: true,
@@ -53,6 +62,12 @@ module.exports = {
     async update(req, res) {
         try {
             await privateGuard(req)
+            try {
+                const validator = Joi.object(attachmentValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
             const attachment = await AttachmentsService.update(req.body, req.params.id);
             return res.send({
                 success: true,

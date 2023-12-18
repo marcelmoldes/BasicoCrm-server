@@ -1,10 +1,22 @@
 const privateGuard = require('../guards/privateGuard')
 const TenantsService = require('../services/tenantsService.js')
+const tenantValidatorSchema = require('../validators/tenantsValidator');
+const { handleJoiErrors } = require("../helpers/validationHelper");
+const Joi = require('joi');
 
 module.exports = {
     async create(req, res) {
         try {
             await privateGuard(req)
+
+            try {
+                const validator = Joi.object(tenantValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
+
+
             const tenant = await TenantsService.create(req.body);
             return res.send({
                 success: true,
@@ -53,6 +65,12 @@ module.exports = {
     async update(req, res) {
         try {
             await privateGuard(req)
+            try {
+                const validator = Joi.object(tenantValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
             const tenant = await TenantsService.update(req.body, req.params.id);
             return res.send({
                 success: true,

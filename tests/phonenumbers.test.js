@@ -8,7 +8,7 @@ const options = {
 }
 describe("PhoneNumbers endpoint basic tests", () => {
     const newPhoneNumber=  {
-        "countryCode": "VG",
+        "country_code": "VG",
         "number": "981389525"
     }
     beforeAll(async () => {

@@ -1,10 +1,21 @@
 const privateGuard = require('../guards/privateGuard')
 const TasksService = require('../services/tasksService.js')
+const taskValidatorSchema = require('../validators/tasksValidator');
+const { handleJoiErrors } = require("../helpers/validationHelper");
+const Joi = require('joi');
 
 module.exports = {
     async create(req, res) {
         try {
             await privateGuard(req)
+
+            try {
+                const validator = Joi.object(taskValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
+
             const task = await TasksService.create(req.body);
             return res.send({
                 success: true,
@@ -53,6 +64,12 @@ module.exports = {
     async update(req, res) {
         try {
             await privateGuard(req)
+            try {
+                const validator = Joi.object(taskValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
             const task = await TasksService.update(req.body, req.params.id);
             return res.send({
                 success: true,

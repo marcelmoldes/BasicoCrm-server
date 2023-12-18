@@ -1,10 +1,19 @@
 const privateGuard = require('../guards/privateGuard')
 const DealsService = require('../services/dealsService.js')
+const dealValidatorSchema = require('../validators/dealsValidator');
+const { handleJoiErrors } = require("../helpers/validationHelper");
+const Joi = require('joi');
 
 module.exports = {
     async create(req, res) {
         try {
             await privateGuard(req)
+            try {
+                const validator = Joi.object(dealValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
             const deal = await DealsService.create(req.body);
             return res.send({
                 success: true,
@@ -53,6 +62,12 @@ module.exports = {
     async update(req, res) {
         try {
             await privateGuard(req)
+            try {
+                const validator = Joi.object(dealValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
             const deal = await DealsService.update(req.body, req.params.id);
             return res.send({
                 success: true,

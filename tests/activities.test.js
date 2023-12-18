@@ -29,7 +29,7 @@ describe("Activities endpoint basic tests", () => {
     })
     it("POST /activities", async () => {
         const response = await axios.post(`${baseURL}/activities`, newActivity, options);
-        newActivity.id = response.data.activity.id;
+        newActivity.id = response.data.activity?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /activities/:id", async () => {

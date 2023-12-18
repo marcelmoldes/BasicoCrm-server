@@ -8,14 +8,14 @@ const options = {
 }
 describe("Accounts endpoint basic tests", () => {
     const newAccount =  {
-        "name": "dgtdtg",
+        "name": "dgtduitg",
         "ownerId": 2,
         "phoneId": 8,
-        "website": "dgbgdhdfhgtfh.",
+        "website": "www.gmail.com",
         "industry": "Manager",
-        "annualRevenue": "4600129",
-        "employees": "18636",
-        "notes": "hthfthtfh",
+        "annualRevenue": 4600129,
+        "employees": 5,
+        "notes": "k",
         "addressId": 3
     }
     beforeAll(async () => {
@@ -28,7 +28,7 @@ describe("Accounts endpoint basic tests", () => {
     })
     it("POST /accounts", async () => {
         const response = await axios.post(`${baseURL}/accounts`, newAccount, options);
-        newAccount.id = response.data.account.id;
+        newAccount.id = response.data.account?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /accounts/:id", async () => {

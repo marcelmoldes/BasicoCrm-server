@@ -1,10 +1,19 @@
 const privateGuard = require('../guards/privateGuard')
 const PhoneNumbersService = require('../services/phonenumbersService.js')
+const phonenumberValidatorSchema = require('../validators/phonenumbersValidator');
+const { handleJoiErrors } = require("../helpers/validationHelper");
+const Joi = require('joi');
 
 module.exports = {
     async create(req, res) {
         try {
             await privateGuard(req)
+            try {
+                const validator = Joi.object(phonenumberValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
             const phonenumber = await PhoneNumbersService.create(req.body);
             return res.send({
                 success: true,
@@ -53,6 +62,12 @@ module.exports = {
     async update(req, res) {
         try {
             await privateGuard(req)
+            try {
+                const validator = Joi.object(phonenumberValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
             const phonenumber = await PhoneNumbersService.update(req.body, req.params.id);
             return res.send({
                 success: true,
