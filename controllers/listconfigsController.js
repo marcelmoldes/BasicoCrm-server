@@ -14,10 +14,10 @@ module.exports = {
             } catch(error) {
                 return res.send(handleJoiErrors(error));
             }
-            const listconfigs = await ListConfigsService.create(req.body);
+            const listconfig = await ListConfigsService.create(req.body);
             return res.send({
                 success: true,
-                listconfigs,
+                listconfig,
             });
         } catch (error) {
             return res.send({
