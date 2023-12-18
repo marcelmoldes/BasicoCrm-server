@@ -8,11 +8,11 @@ const options = {
 }
 describe("Attachments endpoint basic tests", () => {
     const newAttachment =  {
-        "account_id": 5,
+        "accountId": 5,
         "name": "hgdrgrr",
         "path": "dgdgdg",
-        "deal_id": 8,
-        "contact_id": 6
+        "dealId": 8,
+        "contactId": 6
     }
     beforeAll(async () => {
         const credentials = {
@@ -24,7 +24,7 @@ describe("Attachments endpoint basic tests", () => {
     })
     it("POST /attachments", async () => {
         const response = await axios.post(`${baseURL}/attachments`, newAttachment, options);
-        newAttachment.id = response.data.attachments.id;
+        newAttachment.id = response.data.attachment?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /attachments/:id", async () => {

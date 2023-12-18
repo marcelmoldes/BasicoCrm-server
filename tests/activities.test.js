@@ -8,16 +8,16 @@ const options = {
 }
 describe("Activities endpoint basic tests", () => {
     const newActivity=  {
-        "owner_id": 28,
-        "contact_id": 16,
-        "account_id": 67,
-        "deal_id": 34,
+        "ownerId": 28,
+        "contactId": 16,
+        "accountId": 67,
+        "dealId": 34,
         "subject": "voluate",
         "description": "yfjhyj",
         "activity_date": "2022-12-15T02:20:30.000Z",
         "location": "Mitchellton",
         "status": "ultio",
-        "notes": "gtghtf"
+        "notes": "guhvuyv"
     }
     beforeAll(async () => {
         const credentials = {

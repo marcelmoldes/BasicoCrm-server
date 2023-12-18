@@ -8,20 +8,20 @@ const options = {
 }
 describe("Contacts endpoint basic tests", () => {
     const newContact =  {
-        "account_id": 1,
-        "owner_id": 1,
-        "address_id": 1,
+        "accountId": 1,
+        "ownerId": 1,
+        "addressId": 1,
         "first_name": "Pete",
         "last_name": "Smith",
         "title": "Google",
         "email": "peter.smith@google.com",
-        "phone_id": 1,
+        "phoneId": 1,
         "lead_source": "Search Engine",
-        "website": "https://google.com/",
+        "website": "www.google.com",
         "annual_revenue": "100000",
         "lead_status": "new",
         "industry": "Technology",
-        "notes": "This is a test contact.",
+        "notes": "This is a test conthgtrhrthrh...",
         "is_lead": false
     }
     beforeAll(async () => {
@@ -34,7 +34,7 @@ describe("Contacts endpoint basic tests", () => {
     })
     it("POST /contacts", async () => {
         const response = await axios.post(`${baseURL}/contacts`, newContact, options);
-        newContact.id = response.data.contact.id;
+        newContact.id = response.data.contact?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /contacts/:id", async () => {

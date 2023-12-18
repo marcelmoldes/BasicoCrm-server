@@ -8,10 +8,10 @@ const options = {
 }
 describe("Tasks endpoint basic tests", () => {
     const newTask =  {
-        "contact_id": 1,
-        "owner_id": 4,
-        "deal_id": 6,
-        "account_id": 5,
+        "contactId": 1,
+        "ownerId": 4,
+        "dealId": 6,
+        "accountId": 5,
         "name": "pepito",
         "description": "hooly",
         "due_date": "2023-04-29 06:17:57",
@@ -28,7 +28,7 @@ describe("Tasks endpoint basic tests", () => {
     })
     it("POST /task", async () => {
         const response = await axios.post(`${baseURL}/tasks`, newTask, options);
-        newTask.id = response.data.task.id;
+        newTask.id = response.data.task?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /tasks/:id", async () => {

@@ -9,8 +9,8 @@ const options = {
 describe("ListConfigs endpoint basic tests", () => {
     const newListConfig =  {
 
-        "tenant_id": 5,
-        "field": "hgdrgrr",
+        "tenantId": 5,
+        "field": "rgrgeg",
         "value":568
 
     }
@@ -24,7 +24,7 @@ describe("ListConfigs endpoint basic tests", () => {
     })
     it("POST /listconfigs", async () => {
         const response = await axios.post(`${baseURL}/listconfigs`, newListConfig, options);
-        newListConfig.id = response.data.listconfigs.id;
+        newListConfig.id = response.data.listconfig?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /listconfigs/:id", async () => {

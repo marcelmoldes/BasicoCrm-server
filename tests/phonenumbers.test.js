@@ -21,7 +21,7 @@ describe("PhoneNumbers endpoint basic tests", () => {
     })
     it("POST /phonenumbers", async () => {
         const response = await axios.post(`${baseURL}/phonenumbers`, newPhoneNumber, options);
-        newPhoneNumber.id = response.data.phonenumber.id;
+        newPhoneNumber.id = response.data.phonenumber?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /phonenumbers/:id", async () => {

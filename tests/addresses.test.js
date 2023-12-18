@@ -13,7 +13,7 @@ describe("Addresses endpoint basic tests", () => {
         "state": "rggr",
         "city": "rgfrgrgt",
         "country": "htrhtrhrthyr",
-        "postal_code": 6989
+        "postal_code": 8688
     }
     beforeAll(async () => {
         const credentials = {
@@ -25,7 +25,7 @@ describe("Addresses endpoint basic tests", () => {
     })
     it("POST /addresses", async () => {
         const response = await axios.post(`${baseURL}/addresses`, newAddress, options);
-        newAddress.id = response.data.address.id;
+        newAddress.id = response.data.address?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /addresses/:id", async () => {

@@ -8,8 +8,8 @@ const options = {
 }
 describe("Deals endpoint basic tests", () => {
     const newDeal =  {
-        "owner_id": 19,
-        "account_id": 7,
+        "ownerId": 19,
+        "accountId": 7,
         "deal_name": "claudeo",
         "deal_value": "1090342",
         "close_date": "2023-04-25T09:45:54.000Z",
@@ -25,7 +25,7 @@ describe("Deals endpoint basic tests", () => {
     })
     it("POST /deals", async () => {
         const response = await axios.post(`${baseURL}/deals`, newDeal, options);
-        newDeal.id = response.data.deal.id;
+        newDeal.id = response.data.deal?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /deals/:id", async () => {

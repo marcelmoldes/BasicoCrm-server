@@ -6,6 +6,6 @@ module.exports = {
     state: Joi.string().alphanum().min(3).max(50).required(),
     city: Joi.string().alphanum().min(3).max(50).required(),
     country:Joi.string().alphanum().min(3).max(50).required(),
-    postal_code:Joi.number().min(3).max(4).required(),
+    postal_code:Joi.number().max(9999).required(),
 }
 

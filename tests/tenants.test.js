@@ -9,11 +9,11 @@ const options = {
 describe("Tenants endpoint basic tests", () => {
     const newTenant=  {
 
-        "owner_id": 79,
-        "address_id": 73,
-        "phone_id": 35,
+        "ownerId": 79,
+        "addressId": 73,
+        "phoneId": 35,
         "name": "yhfyhfh",
-        "website":"tyjtjyj",
+        "website":"www.cocacola.com",
         "type": "tjtyjtyj",
         "industry": "tyjyjygj",
         "annual_revenue": 786789768,
@@ -29,7 +29,7 @@ describe("Tenants endpoint basic tests", () => {
     })
     it("POST /tenants", async () => {
         const response = await axios.post(`${baseURL}/tenants`, newTenant, options);
-        newTenant.id = response.data.tenant.id;
+        newTenant.id = response.data.tenant?.id;
         expect(response.data.success).toBe(true);
     });
     it("GET /tenants/:id", async () => {
