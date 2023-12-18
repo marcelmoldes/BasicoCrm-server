@@ -31,10 +31,10 @@ module.exports = {
     async findAll(req, res) {
         try {
             await privateGuard(req)
-            const activities = await ActivitiesService.findAll();
+            const result = await ActivitiesService.findAll(req.query);
             return res.send({
                 success: true,
-                activities
+                ...result
             })
         } catch (error) {
             return res.send({

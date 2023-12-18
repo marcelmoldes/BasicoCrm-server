@@ -30,10 +30,10 @@ module.exports = {
     async findAll(req, res) {
         try {
             await privateGuard(req)
-            const addresses = await AddressesService.findAll();
+            const result = await AddressesService.findAll(req.query);
             return res.send({
                 success: true,
-                addresses
+                ...result
             })
         } catch (error) {
             return res.send({

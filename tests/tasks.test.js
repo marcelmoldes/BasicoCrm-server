@@ -37,7 +37,7 @@ describe("Tasks endpoint basic tests", () => {
     });
     it("GET /tasks", async () => {
         const response = await axios.get(`${baseURL}/tasks`, options);
-        expect(response.data.tasks.length >= 1).toBe(true);
+        expect(response.data.records.length >= 1).toBe(true);
     });
     it("DELETE /tasks", async () => {
         const response = await axios.delete(`${baseURL}/tasks/${newTask.id}`, options)

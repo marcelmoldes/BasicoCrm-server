@@ -34,7 +34,7 @@ describe("Deals endpoint basic tests", () => {
     });
     it("GET /deals", async () => {
         const response = await axios.get(`${baseURL}/deals`, options);
-        expect(response.data.deals.length >= 1).toBe(true);
+        expect(response.data.records.length >= 1).toBe(true);
     });
     it("DELETE /deals", async () => {
         const response = await axios.delete(`${baseURL}/deals/${newDeal.id}`, options)

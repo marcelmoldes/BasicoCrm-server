@@ -8,11 +8,9 @@ const options = {
 }
 describe("ListConfigs endpoint basic tests", () => {
     const newListConfig =  {
-
         "tenantId": 5,
         "field": "rgrgeg",
         "value":568
-
     }
     beforeAll(async () => {
         const credentials = {
@@ -33,7 +31,7 @@ describe("ListConfigs endpoint basic tests", () => {
     });
     it("GET /listconfigs", async () => {
         const response = await axios.get(`${baseURL}/listconfigs`, options);
-        expect(response.data.listconfigs.length >= 1).toBe(true);
+        expect(response.data.records.length >= 1).toBe(true);
     });
     it("DELETE /listconfigs", async () => {
         const response = await axios.delete(`${baseURL}/listconfigs/${newListConfig.id}`, options)

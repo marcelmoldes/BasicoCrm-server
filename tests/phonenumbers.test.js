@@ -30,7 +30,7 @@ describe("PhoneNumbers endpoint basic tests", () => {
     });
     it("GET /phonenumbers", async () => {
         const response = await axios.get(`${baseURL}/phonenumbers`, options);
-        expect(response.data.phonenumbers.length >= 1).toBe(true);
+        expect(response.data.records.length >= 1).toBe(true);
     });
     it("DELETE /phonenumbers", async () => {
         const response = await axios.delete(`${baseURL}/phonenumbers/${newPhoneNumber.id}`, options)

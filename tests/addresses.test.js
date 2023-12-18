@@ -34,7 +34,7 @@ describe("Addresses endpoint basic tests", () => {
     });
     it("GET /addresses", async () => {
         const response = await axios.get(`${baseURL}/addresses`, options);
-        expect(response.data.addresses.length >= 1).toBe(true);
+        expect(response.data.records.length >= 1).toBe(true);
     });
     it("DELETE /addresses", async () => {
         const response = await axios.delete(`${baseURL}/addresses/${newAddress.id}`, options)

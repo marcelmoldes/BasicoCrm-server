@@ -33,7 +33,7 @@ describe("Attachments endpoint basic tests", () => {
     });
     it("GET /attachments", async () => {
         const response = await axios.get(`${baseURL}/attachments`, options);
-        expect(response.data.attachments.length >= 1).toBe(true);
+        expect(response.data.records.length >= 1).toBe(true);
     });
     it("DELETE /attachments", async () => {
         const response = await axios.delete(`${baseURL}/attachments/${newAttachment.id}`, options)

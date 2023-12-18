@@ -20,6 +20,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     underscored: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     modelName: 'ListConfigs',
   });
   return ListConfigs;

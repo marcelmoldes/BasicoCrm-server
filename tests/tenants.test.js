@@ -38,7 +38,7 @@ describe("Tenants endpoint basic tests", () => {
     });
     it("GET /tenants", async () => {
         const response = await axios.get(`${baseURL}/tenants`, options);
-        expect(response.data.tenants.length >= 1).toBe(true);
+        expect(response.data.records.length >= 1).toBe(true);
     });
     it("DELETE /tenants", async () => {
         const response = await axios.delete(`${baseURL}/tenants/${newTenant.id}`, options)

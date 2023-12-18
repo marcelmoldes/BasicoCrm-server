@@ -30,10 +30,10 @@ module.exports = {
     async findAll(req, res) {
         try {
             await privateGuard(req)
-            const phonenumbers = await PhoneNumbersService.findAll();
+            const result = await PhoneNumbersService.findAll(req.query);
             return res.send({
                 success: true,
-                phonenumbers
+                ...result
             })
         } catch (error) {
             return res.send({

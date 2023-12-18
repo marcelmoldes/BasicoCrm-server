@@ -1,4 +1,5 @@
 const {Addresses} = require("../models");
+const {paginator} = require("../helpers/databaseHelper");
 module.exports = {
 
     async create(data) {
@@ -7,8 +8,8 @@ module.exports = {
     async findOne(options) {
         return await Addresses.findOne(options);
     },
-    async findAll(options) {
-        return await Addresses.findAll(options);
+    async findAll(query) {
+        return await paginator(Addresses, query);
     },
     async findByPk(id) {
         return await Addresses.findByPk(id);

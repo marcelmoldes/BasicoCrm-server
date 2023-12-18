@@ -38,7 +38,7 @@ describe("Activities endpoint basic tests", () => {
     });
     it("GET /activities", async () => {
         const response = await axios.get(`${baseURL}/activities`, options);
-        expect(response.data.activities.length >= 1).toBe(true);
+        expect(response.data.records.length >= 1).toBe(true);
     });
     it("DELETE /activities", async () => {
         const response = await axios.delete(`${baseURL}/activities/${newActivity.id}`, options)

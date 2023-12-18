@@ -43,7 +43,7 @@ describe("Contacts endpoint basic tests", () => {
     });
     it("GET /contacts", async () => {
         const response = await axios.get(`${baseURL}/contacts`, options);
-        expect(response.data.contacts.length >= 1).toBe(true);
+        expect(response.data.records.length >= 1).toBe(true);
     });
     it("DELETE /contacts", async () => {
         const response = await axios.delete(`${baseURL}/contacts/${newContact.id}`, options)

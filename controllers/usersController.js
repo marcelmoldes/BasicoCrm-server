@@ -33,10 +33,10 @@ module.exports = {
     async findAll(req, res) {
         try {
             await adminGuard(req)
-            const users = await UsersService.findAll();
+            const result = await UsersService.findAll(req.query);
             return res.send({
                 success: true,
-                users
+                ...result
             })
         } catch (error) {
             return res.send({

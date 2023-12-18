@@ -1,4 +1,5 @@
 const {Attachments} = require("../models");
+const {paginator} = require("../helpers/databaseHelper");
 module.exports = {
 
     async create(data) {
@@ -7,8 +8,8 @@ module.exports = {
     async findOne(options) {
         return await Attachments.findOne(options);
     },
-    async findAll(options) {
-        return await Attachments.findAll(options);
+    async findAll(query) {
+        return await paginator(Attachments, query);
     },
     async findByPk(id) {
         return await Attachments.findByPk(id);

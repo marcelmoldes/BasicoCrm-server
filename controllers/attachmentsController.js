@@ -30,10 +30,10 @@ module.exports = {
     async findAll(req, res) {
         try {
             await privateGuard(req)
-            const attachments = await AttachmentsService.findAll();
+            const result = await AttachmentsService.findAll(req.query);
             return res.send({
                 success: true,
-                attachments
+                ...result
             })
         } catch (error) {
             return res.send({

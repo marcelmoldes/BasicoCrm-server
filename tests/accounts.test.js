@@ -37,7 +37,7 @@ describe("Accounts endpoint basic tests", () => {
     });
     it("GET /accounts", async () => {
         const response = await axios.get(`${baseURL}/accounts`, options);
-        expect(response.data.accounts.length >= 1).toBe(true);
+        expect(response.data.records.length >= 1).toBe(true);
     });
     it("DELETE /accounts", async () => {
         const response = await axios.delete(`${baseURL}/accounts/${newAccount.id}`, options)

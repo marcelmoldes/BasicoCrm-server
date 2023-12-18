@@ -31,10 +31,10 @@ module.exports = {
     async findAll(req, res) {
         try {
             await privateGuard(req)
-            const accounts = await AccountsService.findAll();
+            const result = await AccountsService.findAll(req.query);
             return res.send({
                 success: true,
-                accounts
+                ...result
             })
         } catch (error) {
             return res.send({
