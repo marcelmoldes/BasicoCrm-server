@@ -1,5 +1,5 @@
 const Controller = require("../controllers/phonenumbersController")
-const resource = 'phone_numbers';
+const resource = 'phonenumbers';
 
 module.exports = (app) => {
     app.get(`/${resource}`, Controller.findAll);

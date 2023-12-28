@@ -17,12 +17,14 @@ module.exports = {
       },
       state: {
         type: Sequelize.STRING
-
       },
       city: {
         type: Sequelize.STRING
       },
       country: {
+        type: Sequelize.STRING
+      },
+      postal_code: {
         type: Sequelize.STRING
       },
       created_at: {

@@ -25,6 +25,7 @@ module.exports = {
                 city,
                 country,
                 state,
+                postal_code: faker.location.zipCode(),
                 created_at: created_at,
                 updated_at: created_at
             };

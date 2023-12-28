@@ -8,7 +8,6 @@ const options = {
 }
 describe("Tenants endpoint basic tests", () => {
     const newTenant=  {
-
         "ownerId": 79,
         "addressId": 73,
         "phoneId": 35,
