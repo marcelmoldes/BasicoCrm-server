@@ -12,7 +12,7 @@ describe("Attachments endpoint basic tests", () => {
         "name": "hgdrgrr",
         "path": "dgdgdg",
         "deal_id": 8,
-        "contactId": 6
+        "contact_id": 6
     }
     beforeAll(async () => {
         const credentials = {

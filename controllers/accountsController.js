@@ -1,7 +1,7 @@
 const privateGuard = require('../guards/privateGuard')
 const AccountsService = require('../services/accountsService.js')
 const accountValidatorSchema = require('../validators/accountsValidator');
-const { handleJoiErrors } = require("../helpers/validationHelper");
+const {handleJoiErrors} = require("../helpers/validationHelper");
 const Joi = require("joi");
 
 module.exports = {
@@ -10,8 +10,8 @@ module.exports = {
             await privateGuard(req)
             try {
                 const validator = Joi.object(accountValidatorSchema);
-                Joi.assert(req.body, validator, { abortEarly: false });
-            } catch(error) {
+                Joi.assert(req.body, validator, {abortEarly: false});
+            } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
 
@@ -50,7 +50,7 @@ module.exports = {
             const account = await AccountsService.findByPk(req.params.id)
             return res.send({
                 success: true,
-            account
+                account
             })
         } catch (error) {
             return res.send({
@@ -66,8 +66,8 @@ module.exports = {
 
             try {
                 const validator = Joi.object(accountValidatorSchema);
-                Joi.assert(req.body, validator, { abortEarly: false });
-            } catch(error) {
+                Joi.assert(req.body, validator, {abortEarly: false});
+            } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
 

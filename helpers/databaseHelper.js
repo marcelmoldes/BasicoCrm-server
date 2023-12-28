@@ -1,7 +1,7 @@
 const {Op} = require("sequelize");
 
 module.exports = {
-    async paginator(model, query, searchFields = []) {
+    async paginator(model, query, searchFields = [], customOptions = {}) {
 
         // object destructuring
         const {
@@ -33,6 +33,7 @@ module.exports = {
             options.where[Op.or] = where;
         }
 
+        Object.assign(options, customOptions);
         const records = await model.findAll(options);
 
         const totalRecords = await model.count({
