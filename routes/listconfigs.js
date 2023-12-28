@@ -1,5 +1,5 @@
 const Controller = require("../controllers/listconfigsController")
-const resource = 'listconfigs';
+const resource = 'list_configs';
 
 module.exports = (app) => {
     app.get(`/${resource}`, Controller.findAll);

@@ -9,7 +9,7 @@ module.exports = {
         return await Addresses.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Addresses, query);
+        return await paginator(Addresses, query,['street_address1','street_address2','city','state','country','postal_code']);
     },
     async findByPk(id) {
         return await Addresses.findByPk(id);

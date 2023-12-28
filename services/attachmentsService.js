@@ -9,7 +9,7 @@ module.exports = {
         return await Attachments.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Attachments, query);
+        return await paginator(Attachments, query,['name','path']);
     },
     async findByPk(id) {
         return await Attachments.findByPk(id);

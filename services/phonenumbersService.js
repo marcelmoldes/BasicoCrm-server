@@ -9,7 +9,7 @@ module.exports = {
         return await PhoneNumbers.findOne(options);
     },
     async findAll(query) {
-        return await paginator(PhoneNumbers, query);
+        return await paginator(PhoneNumbers, query, ['country_code', 'number']);
     },
     async findByPk(id) {
         return await PhoneNumbers.findByPk(id);

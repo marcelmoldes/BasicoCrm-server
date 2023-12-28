@@ -11,7 +11,7 @@ module.exports = {
             let name = faker.lorem.word(20);
             let owner_id = faker.number.int({min: 1, max: 100});
             let phone_id = faker.number.int({min: 1, max: 100});
-            let website = faker.lorem.paragraph(2);
+            let website = faker.internet.url();
 
             let industry = faker.person.jobType()
             let annual_revenue = faker.commerce.price({ min: 20000, max: 10000000 })

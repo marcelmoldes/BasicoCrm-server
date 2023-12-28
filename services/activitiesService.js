@@ -9,7 +9,7 @@ module.exports = {
         return await Activities.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Activities, query);
+        return await paginator(Activities, query, ['subject','location','status','activity_date']);
     },
     async findByPk(id) {
         return await Activities.findByPk(id);

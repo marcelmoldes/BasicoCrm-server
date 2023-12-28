@@ -10,7 +10,7 @@ module.exports = {
         return await Contacts.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Contacts, query);
+        return await paginator(Contacts, query, ['first_name', 'last_name', 'email']);
     },
     async findByPk(id) {
         return await Contacts.findByPk(id);

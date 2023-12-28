@@ -9,7 +9,7 @@ module.exports = {
         return await ListConfigs.findOne(options);
     },
     async findAll(query) {
-        return await paginator(ListConfigs, query);
+        return await paginator(ListConfigs, query, ['field', 'value']);
     },
     async findByPk(id) {
         return await ListConfigs.findByPk(id);

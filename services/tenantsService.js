@@ -9,7 +9,7 @@ module.exports = {
         return await Tenants.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Tenants, query);
+        return await paginator(Tenants, query, ['name', 'website','type','industry']);
     },
     async findByPk(id) {
         return await Tenants.findByPk(id);

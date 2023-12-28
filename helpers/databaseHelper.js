@@ -1,8 +1,9 @@
 const {Op} = require("sequelize");
 
 module.exports = {
-    async paginator(model, query) {
+    async paginator(model, query, searchFields = []) {
 
+        // object destructuring
         const {
             searchString = false,
             recordsPerPage = 10,
@@ -18,7 +19,7 @@ module.exports = {
                 [sortBy, sortOrder],
             ]
         };
-        const searchFields = ['first_name', 'last_name', 'email'];
+
         if(searchString) {
             const where = {}
             for (const field of searchFields) {
@@ -43,7 +44,7 @@ module.exports = {
         const pagination = {
             totalRecords,
             totalPages: Math.ceil(totalRecords / recordsPerPage),
-            currentPage: +query.pageNumber,
+            currentPage: pageNumber,
             fromRecord: options.offset + 1,
             toRecord: toRecord > totalRecords ? totalRecords : toRecord,
         }

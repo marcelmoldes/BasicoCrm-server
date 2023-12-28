@@ -1,8 +1,32 @@
 const jwtSecret = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
 const {Users} = require('../models')
-module.exports = {
+const Joi = require("joi");
+const userValidatorSchema = require("../validators/userValidator");
+const {handleJoiErrors} = require("../helpers/validationHelper");
+const UsersService = require("../services/usersService");
 
+module.exports = {
+    async register(req, res) {
+        try {
+            try {
+                const validator = Joi.object(userValidatorSchema);
+                Joi.assert(req.body, validator, { abortEarly: false });
+            } catch(error) {
+                return res.send(handleJoiErrors(error));
+            }
+            const user = await UsersService.create(req.body);
+            return res.send({
+                success: true,
+                user,
+            });
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message
+            });
+        }
+    },
     async login(req, res) {
         try {
             const user = await Users.findOne({
