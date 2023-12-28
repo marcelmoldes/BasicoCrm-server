@@ -1,11 +1,9 @@
 const {Accounts, PhoneNumbers} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
 
-const include = [
-    {
-        model: PhoneNumbers,
-    }
-]
+const include = {
+    model: PhoneNumbers,
+}
 
 module.exports = {
 
@@ -13,9 +11,8 @@ module.exports = {
         return await Accounts.create(data)
     },
     async findOne(options) {
-        return await Accounts.findOne(options, {
-            include
-        });
+        options.include = include;
+        return await Accounts.findOne(options);
     },
     async findAll(query) {
         return await paginator(Accounts, query, ['industry', 'name', 'website'], {
