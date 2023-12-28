@@ -10,7 +10,6 @@ module.exports = {
         for (let i = 0; i < objectsToCreate; i++) {
             let name = faker.lorem.word(20);
             let owner_id = faker.number.int({min: 1, max: 100});
-            let phone_id = faker.number.int({min: 1, max: 100});
             let website = faker.internet.url();
 
             let industry = faker.person.jobType()
@@ -18,22 +17,17 @@ module.exports = {
             let employees =faker.string.numeric(5)
             let notes = faker.lorem.paragraph(2)
 
-            let address_id = faker.number.int({min: 1, max: 100});
-
             const created_at = faker.date.past({
                 days: 365,
             });
             const account = {
                 name,
                 owner_id,
-                phone_id,
                 website,
-
                 industry,
                 annual_revenue,
                 employees,
                 notes,
-                address_id,
                 created_at: created_at,
                 updated_at: created_at
             };

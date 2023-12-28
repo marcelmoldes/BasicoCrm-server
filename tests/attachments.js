@@ -8,10 +8,10 @@ const options = {
 }
 describe("Attachments endpoint basic tests", () => {
     const newAttachment =  {
-        "accountId": 5,
+        "account_id": 5,
         "name": "hgdrgrr",
         "path": "dgdgdg",
-        "dealId": 8,
+        "deal_id": 8,
         "contactId": 6
     }
     beforeAll(async () => {

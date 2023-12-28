@@ -8,10 +8,10 @@ const options = {
 }
 describe("Tasks endpoint basic tests", () => {
     const newTask =  {
-        "contactId": 1,
-        "ownerId": 4,
-        "dealId": 6,
-        "accountId": 5,
+        "contact_id": 1,
+        "owner_id": 4,
+        "deal_id": 6,
+        "account_id": 5,
         "name": "pepito",
         "description": "hooly",
         "due_date": "2023-04-29 06:17:57",

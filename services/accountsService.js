@@ -1,18 +1,24 @@
-const {Accounts} = require("../models");
+const {Accounts, PhoneNumbers} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
 module.exports = {
 
     async create(data) {
-     return await Accounts.create(data)
+        return await Accounts.create(data)
     },
     async findOne(options) {
         return await Accounts.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Accounts, query, ['industry','name','website'])
+        return await paginator(Accounts, query, ['industry', 'name', 'website'])
     },
     async findByPk(id) {
-        return await Accounts.findByPk(id);
+        return await Accounts.findByPk(id, {
+            include: [
+                {
+                    model: PhoneNumbers,
+                }
+            ],
+        });
     },
 
     async update(data, id) {

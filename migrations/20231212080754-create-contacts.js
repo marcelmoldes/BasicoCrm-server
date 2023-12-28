@@ -15,9 +15,6 @@ module.exports = {
       owner_id: {
         type: Sequelize.INTEGER
       },
-      address_id: {
-        type: Sequelize.INTEGER
-      },
       first_name: {
         type: Sequelize.STRING
       },
@@ -29,9 +26,6 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING
-      },
-      phone_id: {
-        type: Sequelize.INTEGER
       },
       lead_source: {
         type: Sequelize.STRING

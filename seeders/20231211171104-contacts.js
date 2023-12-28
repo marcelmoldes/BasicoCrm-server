@@ -12,12 +12,10 @@ module.exports = {
         for (let i = 0; i < objectsToCreate; i++) {
             let account_id = faker.number.int({ min: 1, max: 100 });
             let owner_id = faker.number.int({ min: 1, max: 100 });
-            let address_id = faker.number.int({ min: 1, max: 100 });
             let first_name = faker.person.firstName();
             let last_name = faker.person.lastName();
             let title = faker.lorem.word(20);
             let email = faker.internet.email();
-            let phone_id = faker.number.int({ min: 1, max: 100 });
             let lead_source = faker.lorem.word(10);
             let website =faker.internet.url();
             let annual_revenue = faker.commerce.price({ min: 20000, max: 1000000})
@@ -32,12 +30,11 @@ module.exports = {
             const contact = {
              account_id,
                 owner_id,
-                address_id,
                 first_name,
                 last_name,
                 title,
                 email,
-                phone_id,lead_source,
+                lead_source,
                 website,
                 annual_revenue,
                 lead_status,

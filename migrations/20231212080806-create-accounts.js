@@ -15,13 +15,9 @@ module.exports = {
       owner_id: {
         type: Sequelize.INTEGER
       },
-      phone_id: {
-        type: Sequelize.INTEGER
-      },
       website: {
         type: Sequelize.STRING
       },
-
       industry: {
         type: Sequelize.STRING
       },
@@ -33,9 +29,6 @@ module.exports = {
       },
       notes: {
         type: Sequelize.STRING
-      },
-      address_id: {
-        type: Sequelize.INTEGER
       },
       created_at: {
         allowNull: false,

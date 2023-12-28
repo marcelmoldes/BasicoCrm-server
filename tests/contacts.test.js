@@ -8,14 +8,12 @@ const options = {
 }
 describe("Contacts endpoint basic tests", () => {
     const newContact =  {
-        "accountId": 1,
-        "ownerId": 1,
-        "addressId": 1,
+        "account_id": 1,
+        "owner_id": 1,
         "first_name": "Pete",
         "last_name": "Smith",
         "title": "Google",
         "email": "peter.smith@google.com",
-        "phoneId": 1,
         "lead_source": "Search Engine",
         "website": "www.google.com",
         "annual_revenue": "100000",

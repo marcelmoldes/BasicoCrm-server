@@ -1,10 +1,8 @@
 const Joi = require("joi");
 
 module.exports = {
-    accountId: Joi.number().integer().required(),
-    ownerId: Joi.number().integer().required(),
-    addressId: Joi.number().integer().required(),
-  phoneId: Joi.number().integer().required(),
+    account_id: Joi.number().integer().required(),
+    owner_id: Joi.number().integer().required(),
     first_name: Joi.string().alphanum().min(3).max(20).required(),
     last_name: Joi.string().alphanum().min(3).max(20).required(),
     email: Joi.string().email().required(),

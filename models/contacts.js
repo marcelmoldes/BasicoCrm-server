@@ -16,12 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   Contacts.init({
     account_id: DataTypes.INTEGER,
     owner_id: DataTypes.INTEGER,
-    address_id: DataTypes.INTEGER,
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     title: DataTypes.STRING,
     email: DataTypes.STRING,
-    phone_id: DataTypes.INTEGER,
     lead_source: DataTypes.STRING(40),
     website: DataTypes.STRING(100),
     annual_revenue: DataTypes.DECIMAL(15),

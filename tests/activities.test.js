@@ -8,10 +8,10 @@ const options = {
 }
 describe("Activities endpoint basic tests", () => {
     const newActivity=  {
-        "ownerId": 28,
-        "contactId": 16,
-        "accountId": 67,
-        "dealId": 34,
+        "owner_id": 28,
+        "contact_id": 16,
+        "account_id": 67,
+        "deal_id": 34,
         "subject": "voluate",
         "description": "yfjhyj",
         "activity_date": "2022-12-15T02:20:30.000Z",

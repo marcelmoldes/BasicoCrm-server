@@ -14,14 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Addresses.init({
+    contact_id: DataTypes.INTEGER,
+    tenant_id: DataTypes.INTEGER,
+    account_id: DataTypes.INTEGER,
     street_address1: DataTypes.STRING(150),
     street_address2: DataTypes.STRING(150),
     state: DataTypes.STRING(60),
     city: DataTypes.STRING(60),
     country:DataTypes.STRING(60),
-
     postal_code:DataTypes.DECIMAL(4)
-
   }, {
     sequelize,
     underscored: true,

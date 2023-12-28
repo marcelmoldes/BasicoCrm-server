@@ -9,14 +9,12 @@ const options = {
 describe("Accounts endpoint basic tests", () => {
     const newAccount =  {
         "name": "dgtduitg",
-        "ownerId": 2,
-        "phoneId": 8,
+        "owner_id": 2,
         "website": "www.gmail.com",
         "industry": "Manager",
-        "annualRevenue": 4600129,
+        "annual_revenue": 4600129,
         "employees": 5,
         "notes": "k",
-        "addressId": 3
     }
     beforeAll(async () => {
         const credentials = {

@@ -12,12 +12,6 @@ module.exports = {
       owner_id: {
         type: Sequelize.INTEGER
       },
-      address_id: {
-        type: Sequelize.INTEGER
-      },
-      phone_id: {
-        type: Sequelize.INTEGER
-      },
       name: {
         type: Sequelize.STRING
       },

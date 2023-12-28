@@ -9,6 +9,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      account_id: {
+        type: Sequelize.INTEGER,
+      },
+      contact_id: {
+        type: Sequelize.INTEGER,
+      },
+      tenant_id: {
+        type: Sequelize.INTEGER,
+      },
       street_address1: {
         type: Sequelize.STRING
       },

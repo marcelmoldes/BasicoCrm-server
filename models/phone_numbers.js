@@ -10,13 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.Accounts);
     }
   }
   PhoneNumbers.init({
+    contact_id: DataTypes.INTEGER,
+    tenant_id: DataTypes.INTEGER,
+    account_id: DataTypes.INTEGER,
     country_code: DataTypes.STRING,
     number: DataTypes.DECIMAL(14),
-
   }, {
     sequelize,
     underscored: true,

@@ -15,8 +15,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   Tenants.init({
     "owner_id": DataTypes.INTEGER,
-    "address_id": DataTypes.INTEGER,
-    "phone_id": DataTypes.INTEGER,
     "name": DataTypes.STRING(40),
     "website": DataTypes.STRING(250),
     "type": DataTypes.STRING(20),
