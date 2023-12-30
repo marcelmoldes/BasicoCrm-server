@@ -1,27 +1,30 @@
 'use strict';
 const {
-  Model
+    Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Tasks extends Model {
+    class Tasks extends Model {
+        static associate(models) {
+            this.belongsTo(models.Contacts);
+        }
+    }
 
-  }
-  Tasks.init({
-    contact_id: DataTypes.INTEGER,
-    owner_id: DataTypes.INTEGER,
-    deal_id: DataTypes.INTEGER,
-    account_id: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    due_date: DataTypes.DATE,
-    status: DataTypes.STRING,
-    priority: DataTypes.STRING
-  }, {
-    sequelize,
-    underscored: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    modelName: 'Tasks',
-  });
-  return Tasks;
+    Tasks.init({
+        contact_id: DataTypes.INTEGER,
+        owner_id: DataTypes.INTEGER,
+        deal_id: DataTypes.INTEGER,
+        account_id: DataTypes.INTEGER,
+        name: DataTypes.STRING,
+        description: DataTypes.STRING,
+        due_date: DataTypes.DATE,
+        status: DataTypes.STRING,
+        priority: DataTypes.STRING
+    }, {
+        sequelize,
+        underscored: true,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        modelName: 'Tasks',
+    });
+    return Tasks;
 };
