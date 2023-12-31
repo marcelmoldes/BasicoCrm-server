@@ -1,18 +1,45 @@
-const {Deals} = require("../models");
+const {Deals,Accounts,Attachments,Activities,Tasks,Users} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
+
+const include = [
+    Accounts,
+    Attachments,
+    Activities,
+    Tasks,
+    Users
+
+
+];
+
+
+
+
+
+
+
+
+
 module.exports = {
+
+
 
     async create(data) {
      return await Deals.create(data)
     },
     async findOne(options) {
+
+        options.include = include;
         return await Deals.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Deals, query, ['deal_name','deal_value','close_date','status']);
+        return await paginator(Deals, query, ['deal_name','deal_value','close_date','status'],{
+            include
+        });
     },
     async findByPk(id) {
-        return await Deals.findByPk(id);
+        return await Deals.findByPk(id,{
+            include
+        });
     },
 
     async update(data, id) {

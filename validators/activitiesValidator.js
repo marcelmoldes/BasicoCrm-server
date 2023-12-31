@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 module.exports = {
-    owner_id: Joi.number().integer().required(),
+    user_id: Joi.number().integer().required(),
     account_id: Joi.number().integer().required(),
     deal_id: Joi.number().integer().required(),
     contact_id: Joi.number().integer().required(),

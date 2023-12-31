@@ -11,7 +11,7 @@ module.exports = {
         const records = [];
         for (let i = 0; i < objectsToCreate; i++) {
             let account_id = faker.number.int({ min: 1, max: 100 });
-            let owner_id = faker.number.int({ min: 1, max: 100 });
+            let user_id = faker.number.int({ min: 1, max: 100 });
             let first_name = faker.person.firstName();
             let last_name = faker.person.lastName();
             let title = faker.lorem.word(20);
@@ -29,7 +29,7 @@ module.exports = {
             });
             const contact = {
              account_id,
-                owner_id,
+                user_id,
                 first_name,
                 last_name,
                 title,

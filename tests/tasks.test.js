@@ -9,7 +9,7 @@ const options = {
 describe("Tasks endpoint basic tests", () => {
     const newTask =  {
         "contact_id": 1,
-        "owner_id": 4,
+        "user_id": 4,
         "deal_id": 6,
         "account_id": 5,
         "name": "pepito",

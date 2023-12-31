@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   class PhoneNumbers extends Model {
 
     static associate(models) {
-
+      this.belongsTo(models.Contacts);
+      this.belongsTo(models.Tenants);
+      this.belongsTo(models.Accounts);
     }
   }
   PhoneNumbers.init({

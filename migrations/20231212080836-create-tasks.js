@@ -12,7 +12,7 @@ module.exports = {
       contact_id: {
         type: Sequelize.INTEGER
       },
-      owner_id: {
+      user_id: {
         type: Sequelize.INTEGER
       },
       deal_id: {

@@ -8,11 +8,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasOne(models.PhoneNumbers);
       this.hasOne(models.Addresses);
+      this.hasMany(models.Tasks)
+      this.hasMany(models.Activities);
+      this.hasMany(models.Attachments);
+      this.hasMany(models.Deals);
+      this.belongsTo(models.Users);
     }
   }
   Accounts.init({
     name: DataTypes.STRING,
-    owner_id: DataTypes.INTEGER,
+    user_id: DataTypes.INTEGER,
     website: DataTypes.STRING,
     industry: DataTypes.STRING,
     annual_revenue: DataTypes.DECIMAL(6),

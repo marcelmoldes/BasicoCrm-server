@@ -1,5 +1,18 @@
-const {Users} = require("../models");
+const {Users, Activities, Contacts, Tasks, Deals, Accounts, Tenants} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
+
+const include = [
+
+    Contacts,
+    Tasks,
+    Deals,
+    Accounts,
+    Tenants,
+    Activities
+
+];
+
+
 module.exports = {
     async create(data) {
         const emailFound = await this.findByEmail(data.email)
@@ -10,13 +23,18 @@ module.exports = {
         }
     },
     async findOne(options) {
+        options.include = include;
         return await Users.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Users, query);
+        return await paginator(Users, query,{
+            include
+        });
     },
     async findByPk(id) {
-        return await Users.findByPk(id);
+        return await Users.findByPk(id,{
+            include
+        });
     },
     async findByEmail(email) {
         return await Users.findOne({

@@ -1,18 +1,39 @@
-const {Activities} = require("../models");
+const {
+    Activities, Contacts, Accounts, Deals, Users
+} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
+
+const include = [
+    Contacts,
+
+   Accounts,
+
+    Deals,
+
+    Users
+
+
+]
+
+
 module.exports = {
 
     async create(data) {
      return await Activities.create(data)
     },
     async findOne(options) {
+        options.include = include;
         return await Activities.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Activities, query, ['subject','location','status','activity_date']);
+        return await paginator(Activities, query, ['subject', 'location', 'status', 'activity_date'], {
+            include
+        });
     },
     async findByPk(id) {
-        return await Activities.findByPk(id);
+        return await Activities.findByPk(id,{
+            include
+        });
     },
 
     async update(data, id) {

@@ -6,7 +6,7 @@
 /** @type {import('jest').Config} */
 const config = {
   coverageProvider: "v8",
-  // testRegex: 'phonenumbers.test.js'
+  testRegex: 'contacts.test.js'
 };
 
 module.exports = config;

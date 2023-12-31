@@ -1,5 +1,16 @@
-const {Contacts} = require("../models");
+const {Contacts,PhoneNumbers,Tasks,Accounts,Activities,Attachments,Users} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
+
+const include = [
+    PhoneNumbers,
+    Tasks,
+    Accounts,
+    Activities,
+    Attachments,
+ Users
+
+
+];
 
 module.exports = {
 
@@ -7,13 +18,18 @@ module.exports = {
      return await Contacts.create(data)
     },
     async findOne(options) {
+        options.include = include;
         return await Contacts.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Contacts, query, ['first_name', 'last_name', 'email']);
+        return await paginator(Contacts, query, ['first_name', 'last_name', 'email'],{
+            include
+        });
     },
     async findByPk(id) {
-        return await Contacts.findByPk(id);
+        return await Contacts.findByPk(id,{
+            include
+        });
     },
 
     async update(data, id) {

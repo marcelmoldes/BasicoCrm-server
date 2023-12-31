@@ -8,7 +8,7 @@ module.exports = {
         const objectsToCreate = 100;
         const records = [];
         for (let i = 0; i < objectsToCreate; i++) {
-            let owner_id = faker.number.int({ min: 1, max: 1});
+            let user_id = faker.number.int({ min: 1, max: 1});
             let name = faker.company.name();
             let industry  = faker.commerce.department()
             let annual_revenue  = faker.commerce.price({ min: 20000, max: 1000000 })
@@ -20,7 +20,7 @@ module.exports = {
                 days: 365,
             });
             const tenant = {
-                owner_id,
+                user_id,
                 name,
                 type,
                 website,

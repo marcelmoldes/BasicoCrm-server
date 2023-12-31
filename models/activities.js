@@ -6,11 +6,14 @@ module.exports = (sequelize, DataTypes) => {
   class Activities extends Model {
 
     static associate(models) {
-      // define association here
+      this.belongsTo(models.Contacts);
+      this.belongsTo(models.Accounts);
+      this.belongsTo(models.Deals);
+      this.belongsTo(models.Users);
     }
   }
   Activities.init({
-    owner_id: DataTypes.INTEGER,
+    user_id: DataTypes.INTEGER,
     contact_id: DataTypes.INTEGER,
     account_id: DataTypes.INTEGER,
     deal_id: DataTypes.INTEGER,

@@ -9,7 +9,7 @@ const options = {
 describe("Accounts endpoint basic tests", () => {
     const newAccount =  {
         "name": "dgtduitg",
-        "owner_id": 2,
+        "user_id": 2,
         "website": "www.gmail.com",
         "industry": "Manager",
         "annual_revenue": 4600129,

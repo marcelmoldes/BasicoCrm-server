@@ -8,7 +8,7 @@ module.exports = {
         const objectsToCreate = 100;
         const records = [];
         for (let i = 0; i < objectsToCreate; i++) {
-            let owner_id = faker.number.int({ min: 1, max: 1});
+            let user_id = faker.number.int({ min: 1, max: 1});
             let contact_id = faker.number.int({ min: 1, max: 100 });
             let deal_id= faker.number.int({ min: 1, max: 100 });
             let account_id = faker.number.int({ min: 1, max: 100 });
@@ -22,7 +22,7 @@ module.exports = {
                 days: 365,
             });
             const task = {
-                owner_id,
+                user_id,
                 contact_id,
                 deal_id,
                 name,

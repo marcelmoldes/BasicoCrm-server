@@ -6,12 +6,17 @@ module.exports = (sequelize, DataTypes) => {
     class Contacts extends Model {
         static associate(models) {
             this.hasMany(models.Tasks);
+            this.hasOne(models.PhoneNumbers);
+            this.belongsTo(models.Accounts);
+            this.hasMany(models.Activities);
+            this.hasMany(models.Attachments);
+            this.belongsTo(models.Users);
         }
     }
 
     Contacts.init({
         account_id: DataTypes.INTEGER,
-        owner_id: DataTypes.INTEGER,
+        user_id: DataTypes.INTEGER,
         first_name: DataTypes.STRING,
         last_name: DataTypes.STRING,
         title: DataTypes.STRING,

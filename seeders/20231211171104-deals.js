@@ -8,7 +8,7 @@ module.exports = {
         const objectsToCreate = 100;
         const records = [];
         for (let i = 0; i < objectsToCreate; i++) {
-            let owner_id = faker.number.int({ min: 1, max: 100 });
+            let user_id = faker.number.int({ min: 1, max: 100 });
             let account_id = faker.number.int({ min: 1, max: 100 });
             let deal_name = faker.lorem.word(20);
             let close_date = faker.date.anytime();
@@ -19,7 +19,7 @@ module.exports = {
                 days: 365,
             });
             const deal = {
-              owner_id,
+              user_id,
                 account_id,
                 deal_name,
                 close_date,

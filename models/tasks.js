@@ -6,12 +6,14 @@ module.exports = (sequelize, DataTypes) => {
     class Tasks extends Model {
         static associate(models) {
             this.belongsTo(models.Contacts);
+            this.belongsTo(models.Accounts);
+            this.belongsTo(models.Deals)
+            this.belongsTo(models.Users);
         }
     }
-
     Tasks.init({
         contact_id: DataTypes.INTEGER,
-        owner_id: DataTypes.INTEGER,
+        user_id: DataTypes.INTEGER,
         deal_id: DataTypes.INTEGER,
         account_id: DataTypes.INTEGER,
         name: DataTypes.STRING,

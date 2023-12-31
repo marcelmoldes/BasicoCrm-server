@@ -12,7 +12,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      owner_id: {
+      user_id: {
         type: Sequelize.INTEGER
       },
       website: {

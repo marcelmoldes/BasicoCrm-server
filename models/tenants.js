@@ -10,11 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.hasOne(models.Addresses);
+      this.hasOne(models.PhoneNumbers);
+      this.hasMany(models.ListConfigs);
+      this.hasOne(models.Users);
     }
   }
   Tenants.init({
-    "owner_id": DataTypes.INTEGER,
+    "user_id": DataTypes.INTEGER,
     "name": DataTypes.STRING(40),
     "website": DataTypes.STRING(250),
     "type": DataTypes.STRING(20),

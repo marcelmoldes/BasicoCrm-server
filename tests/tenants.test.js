@@ -8,7 +8,7 @@ const options = {
 }
 describe("Tenants endpoint basic tests", () => {
     const newTenant=  {
-        "owner_id": 79,
+        "user_id": 79,
         "name": "yhfyhfh",
         "website":"www.cocacola.com",
         "type": "tjtyjtyj",

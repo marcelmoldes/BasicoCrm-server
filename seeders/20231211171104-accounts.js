@@ -9,7 +9,7 @@ module.exports = {
         const records = [];
         for (let i = 0; i < objectsToCreate; i++) {
             let name = faker.lorem.word(20);
-            let owner_id = faker.number.int({min: 1, max: 100});
+            let user_id = faker.number.int({min: 1, max: 100});
             let website = faker.internet.url();
 
             let industry = faker.person.jobType()
@@ -22,7 +22,7 @@ module.exports = {
             });
             const account = {
                 name,
-                owner_id,
+                user_id,
                 website,
                 industry,
                 annual_revenue,

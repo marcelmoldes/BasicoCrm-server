@@ -1,18 +1,34 @@
-const {Attachments} = require("../models");
+const {Attachments, Contacts, Accounts} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
+
+
+const include = [
+     Contacts,
+    Accounts,
+
+
+
+
+]
+
 module.exports = {
 
     async create(data) {
      return await Attachments.create(data)
     },
     async findOne(options) {
+        options.include = include;
         return await Attachments.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Attachments, query,['name','path']);
+        return await paginator(Attachments, query,['name','path'],{
+            include
+        });
     },
     async findByPk(id) {
-        return await Attachments.findByPk(id);
+        return await Attachments.findByPk(id,{
+            include
+        });
     },
 
     async update(data, id) {
