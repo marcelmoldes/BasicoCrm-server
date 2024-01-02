@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     "user_id": DataTypes.INTEGER,
     "name": DataTypes.STRING(40),
     "website": DataTypes.STRING(250),
-    "type": DataTypes.STRING(20),
+    "company_name": DataTypes.STRING(20),
     "industry": DataTypes.STRING(40),
     "annual_revenue": DataTypes.DECIMAL(15),
     "employees": DataTypes.DECIMAL(10),

@@ -18,7 +18,7 @@ module.exports = {
       website: {
         type: Sequelize.STRING
       },
-      type: {
+      company_name: {
         type: Sequelize.STRING
       },
       industry: {

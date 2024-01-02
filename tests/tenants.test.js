@@ -11,7 +11,7 @@ describe("Tenants endpoint basic tests", () => {
         "user_id": 79,
         "name": "yhfyhfh",
         "website":"www.cocacola.com",
-        "type": "tjtyjtyj",
+        "company_name": "tjtyjtyj",
         "industry": "tyjyjygj",
         "annual_revenue": 786789768,
         "employees": 7876
