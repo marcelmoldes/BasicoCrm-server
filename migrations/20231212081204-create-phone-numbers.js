@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       number: {
-        type: Sequelize.DECIMAL(14)
+        type: Sequelize.DECIMAL(10)
       },
       created_at: {
         allowNull: false,

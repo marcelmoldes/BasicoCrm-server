@@ -74,7 +74,7 @@ module.exports = {
             } catch(error) {
                 return res.send(handleJoiErrors(error));
             }
-
+user
             const user = await UsersService.update(req.body, req.params.id);
             return res.send({
                 success: true,

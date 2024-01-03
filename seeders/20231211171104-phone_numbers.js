@@ -19,7 +19,7 @@ module.exports = {
             let country_code = faker.location.countryCode()
             let number = faker.string.numeric({
                 allowLeadingZeros: false,
-                length: 9,
+                length: 10,
             })
             const created_at = faker.date.past({
                 days: 365,
