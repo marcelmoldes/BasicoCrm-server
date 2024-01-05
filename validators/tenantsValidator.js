@@ -8,4 +8,5 @@ module.exports = {
     annual_revenue: Joi.number().min(3).max(999999999).required(),
     employees: Joi.number().min(3).max(999999).required(),
     company_name: Joi.string().alphanum().min(3).max(25).required(),
+
 }

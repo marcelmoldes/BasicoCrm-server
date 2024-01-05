@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             this.hasMany(models.Accounts);
             this.hasMany(models.Tasks);
             this.hasMany(models.Deals);
-            this.belongsTo(models.Tenants);
+            this.hasOne(models.Tenants);
         }
     }
 
@@ -30,3 +30,6 @@ module.exports = (sequelize, DataTypes) => {
     });
     return Users;
 };
+
+
+

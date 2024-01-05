@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.Addresses);
       this.hasOne(models.PhoneNumbers);
       this.hasMany(models.ListConfigs);
-      this.hasOne(models.Users);
+      this.belongsTo(models.Users);
     }
   }
   Tenants.init({
