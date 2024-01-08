@@ -66,7 +66,7 @@ module.exports = {
             if (userFound.password !== req.body.currentPassword) {
                 return res.send({
                     success: false,
-                    error: "You must provide your current password",
+                    error: "!You must provide your current password!",
                 });
             }
             userFound.password = req.body.newPassword;
