@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             this.hasMany(models.Activities);
             this.hasMany(models.Attachments);
             this.belongsTo(models.Users);
+            this.hasOne(models.Addresses);
         }
     }
 

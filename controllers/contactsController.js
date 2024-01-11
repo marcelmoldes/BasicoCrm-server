@@ -1,7 +1,7 @@
 const privateGuard = require('../guards/privateGuard')
 const ContactsService = require('../services/contactsService.js')
 const contactValidatorSchema = require('../validators/contactsValidator');
-const { handleJoiErrors } = require("../helpers/validationHelper");
+const {handleJoiErrors} = require("../helpers/validationHelper");
 const Joi = require('joi');
 
 module.exports = {
@@ -10,8 +10,8 @@ module.exports = {
             await privateGuard(req)
             try {
                 const validator = Joi.object(contactValidatorSchema);
-                Joi.assert(req.body, validator, { abortEarly: false });
-            } catch(error) {
+                Joi.assert(req.body, validator, {abortEarly: false});
+            } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
             const contact = await ContactsService.create(req.body);
@@ -64,8 +64,8 @@ module.exports = {
             await privateGuard(req)
             try {
                 const validator = Joi.object(contactValidatorSchema);
-                Joi.assert(req.body, validator, { abortEarly: false });
-            } catch(error) {
+                Joi.assert(req.body, validator, {abortEarly: false});
+            } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
             const contact = await ContactsService.update(req.body, req.params.id);

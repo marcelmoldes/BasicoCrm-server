@@ -6,8 +6,6 @@ const include = [
     Accounts,
     Deals,
     Users,
-
-
 ];
 
 module.exports = {

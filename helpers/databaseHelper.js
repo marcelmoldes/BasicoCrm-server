@@ -45,7 +45,7 @@ module.exports = {
         const pagination = {
             totalRecords,
             totalPages: Math.ceil(totalRecords / recordsPerPage),
-            currentPage: pageNumber,
+            currentPage: +pageNumber,
             fromRecord: options.offset + 1,
             toRecord: toRecord > totalRecords ? totalRecords : toRecord,
         }

@@ -9,6 +9,7 @@ module.exports = {
         const records = [];
         for (let i = 0; i < objectsToCreate; i++) {
             let name = faker.lorem.word(20);
+            let path = faker.system.filePath();
             let deal_id = faker.number.int({min: 1, max: 100});
             let account_id = faker.number.int({min: 1, max: 100});
             let contact_id = faker.number.int({min: 1, max: 100});
@@ -18,6 +19,7 @@ module.exports = {
             });
             const attachment = {
                 name,
+                path,
                 deal_id,
                 account_id,
                 contact_id,
