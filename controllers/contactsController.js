@@ -10,7 +10,7 @@ module.exports = {
             await privateGuard(req)
             try {
                 const validator = Joi.object(contactValidatorSchema);
-                Joi.assert(req.body, validator, {abortEarly: false});
+                Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
@@ -18,6 +18,7 @@ module.exports = {
             return res.send({
                 success: true,
                 contact,
+
             });
         } catch (error) {
             return res.send({
@@ -64,7 +65,7 @@ module.exports = {
             await privateGuard(req)
             try {
                 const validator = Joi.object(contactValidatorSchema);
-                Joi.assert(req.body, validator, {abortEarly: false});
+                Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch (error) {
                 return res.send(handleJoiErrors(error));
             }

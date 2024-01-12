@@ -1,5 +1,7 @@
 const {Contacts,Addresses,PhoneNumbers,Tasks,Accounts,Activities,Attachments,Users} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
+const AddressesService = require("./addressesService");
+const PhoneNumbersService = require("./phonenumbersService");
 
 const include = [
     PhoneNumbers,
@@ -15,9 +17,14 @@ const include = [
 ];
 
 module.exports = {
-
     async create(data) {
-     return await Contacts.create(data)
+     return await Contacts.create(data, {
+         include: [{
+             model: Addresses
+         }, {
+             model: PhoneNumbers
+         }]
+     })
     },
     async findOne(options) {
         options.include = include;
@@ -35,6 +42,9 @@ module.exports = {
     },
 
     async update(data, id) {
+        const { Address, PhoneNumber } = data;
+        await AddressesService.update(Address, Address.id);
+        await PhoneNumbersService.update(PhoneNumber, PhoneNumber.id);
         const contact = await Contacts.findByPk(id);
         Object.assign(contact, data)
         return await contact.save()

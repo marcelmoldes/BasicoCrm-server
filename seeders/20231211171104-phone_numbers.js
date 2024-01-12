@@ -16,7 +16,7 @@ module.exports = {
             } else {
                 tenant_id = i;
             }
-            let country_code = faker.location.countryCode()
+            let country_code = "01"
             let number = faker.string.numeric({
                 allowLeadingZeros: false,
                 length: 10,
