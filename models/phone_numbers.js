@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     contact_id: DataTypes.INTEGER,
     tenant_id: DataTypes.INTEGER,
     account_id: DataTypes.INTEGER,
-    country_code: DataTypes.STRING,
+    country_code: DataTypes.DECIMAL(2),
     number: DataTypes.DECIMAL(14),
   }, {
     sequelize,

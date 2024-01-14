@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       country_code: {
-        type: Sequelize.STRING
+        type: Sequelize.DECIMAL(2)
       },
       number: {
         type: Sequelize.DECIMAL(10)
