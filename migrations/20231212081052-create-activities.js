@@ -21,10 +21,7 @@ module.exports = {
       deal_id: {
         type: Sequelize.INTEGER
       },
-      subject: {
-        type: Sequelize.STRING
-      },
-      description: {
+      title: {
         type: Sequelize.STRING
       },
       activity_date: {

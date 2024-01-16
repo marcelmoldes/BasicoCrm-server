@@ -11,7 +11,7 @@ module.exports = {
 
             try {
                 const validator = Joi.object(taskValidatorSchema);
-                Joi.assert(req.body, validator, { abortEarly: false });
+                Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch(error) {
                 return res.send(handleJoiErrors(error));
             }
@@ -66,7 +66,7 @@ module.exports = {
             await privateGuard(req)
             try {
                 const validator = Joi.object(taskValidatorSchema);
-                Joi.assert(req.body, validator, { abortEarly: false });
+                Joi.assert(req.body, validator,{abortEarly: false, allowUnknown: true});
             } catch(error) {
                 return res.send(handleJoiErrors(error));
             }

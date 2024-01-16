@@ -12,8 +12,7 @@ module.exports = {
             let contact_id = faker.number.int({min: 1, max: 100});
             let account_id = faker.number.int({min: 1, max: 100});
             let deal_id = faker.number.int({min: 1, max: 100});
-            let subject = faker.lorem.word(20);
-            let description = faker.lorem.paragraph(2)
+            let title = faker.lorem.word(20);
             let activity_date = faker.date.anytime()
             let location = faker.location.city()
             let status = faker.lorem.word(20);
@@ -26,8 +25,7 @@ module.exports = {
                 contact_id,
                 account_id,
                 deal_id,
-                subject,
-                description,
+                title,
                 activity_date,
                 location,
                 status,
