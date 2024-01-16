@@ -1,7 +1,7 @@
 const privateGuard = require('../guards/privateGuard')
 const ActivitiesService = require('../services/activitiesService.js')
 const activityValidatorSchema = require('../validators/activitiesValidator');
-const { handleJoiErrors } = require("../helpers/validationHelper");
+const {handleJoiErrors} = require("../helpers/validationHelper");
 const Joi = require('joi');
 const AccountsService = require("../services/accountsService");
 const ContactsService = require("../services/contactsService");
@@ -14,7 +14,7 @@ module.exports = {
             try {
                 const validator = Joi.object(activityValidatorSchema);
                 Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
-            } catch(error) {
+            } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
             const activity = await ActivitiesService.create(req.body);
@@ -68,7 +68,7 @@ module.exports = {
             try {
                 const validator = Joi.object(activityValidatorSchema);
                 Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
-            } catch(error) {
+            } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
             const activity = await ActivitiesService.update(req.body, req.params.id);

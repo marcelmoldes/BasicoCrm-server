@@ -15,7 +15,7 @@ describe("Activities endpoint basic tests", () => {
         "title": "voluate",
         "activity_date": "2022-12-15T02:20:30.000Z",
         "location": "Mitchellton",
-        "status": "ultio",
+        "completed": 1,
         "notes": "guhvuyv"
     }
     beforeAll(async () => {

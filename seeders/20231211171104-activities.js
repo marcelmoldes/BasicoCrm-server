@@ -15,7 +15,7 @@ module.exports = {
             let title = faker.lorem.word(20);
             let activity_date = faker.date.anytime()
             let location = faker.location.city()
-            let status = faker.lorem.word(20);
+            let completed = faker.datatype.boolean() ;
             let notes =faker.lorem.paragraph(2)
             const created_at = faker.date.past({
                 days: 365,
@@ -28,7 +28,7 @@ module.exports = {
                 title,
                 activity_date,
                 location,
-                status,
+                completed,
                 notes,
 
                 created_at: created_at,

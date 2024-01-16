@@ -30,8 +30,8 @@ module.exports = {
       location: {
         type: Sequelize.STRING
       },
-      status: {
-        type: Sequelize.STRING
+      completed: {
+        type: Sequelize.BOOLEAN
       },
       notes: {
         type: Sequelize.STRING

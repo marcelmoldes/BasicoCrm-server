@@ -5,14 +5,9 @@ const {paginator} = require("../helpers/databaseHelper");
 
 const include = [
     Contacts,
-
-   Accounts,
-
+    Accounts,
     Deals,
-
     Users
-
-
 ]
 
 
@@ -23,17 +18,21 @@ module.exports = {
     },
     async findOne(options) {
         options.include = include;
-        return await Activities.findOne(options);
+        const activity = await Activities.findOne(options);
+        activity.completed = activity.completed === 1
+        return activity;
     },
     async findAll(query) {
-        return await paginator(Activities, query, ['subject', 'location', 'status', 'activity_date'], {
+        return await paginator(Activities, query, ['title', 'location', 'completed', 'activity_date'], {
             include
         });
     },
     async findByPk(id) {
-        return await Activities.findByPk(id,{
+        const activity = await Activities.findByPk(id,{
             include
         });
+        activity.completed = activity.completed === 1
+        return activity;
     },
 
     async update(data, id) {

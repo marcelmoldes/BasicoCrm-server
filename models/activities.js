@@ -17,10 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     contact_id: DataTypes.INTEGER,
     account_id: DataTypes.INTEGER,
     deal_id: DataTypes.INTEGER,
-    title: DataTypes.STRING(100),
+    title: DataTypes.STRING(50),
     activity_date: DataTypes.DATE,
     location: DataTypes.STRING(100),
-    status: DataTypes.STRING(40),
+    completed: DataTypes.NUMERIC,
     notes: DataTypes.STRING,
 
 
