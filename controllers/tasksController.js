@@ -3,6 +3,10 @@ const TasksService = require('../services/tasksService.js')
 const taskValidatorSchema = require('../validators/tasksValidator');
 const { handleJoiErrors } = require("../helpers/validationHelper");
 const Joi = require('joi');
+const ContactsService = require("../services/contactsService");
+const AccountsService = require("../services/accountsService");
+const UsersService = require("../services/usersService");
+const DealsService = require("../services/dealsService")
 
 module.exports = {
     async create(req, res) {
@@ -96,4 +100,60 @@ module.exports = {
             });
         }
     },
+    async getOptions(req, res) {
+        try {
+            await privateGuard(req)
+            const options = {
+                contacts: (await ContactsService.findAll({
+                    recordsPerPage: 10000,
+                    sortBy: 'first_name',
+                    sortOrder: 'asc',
+                }))['records'],
+                accounts: (await AccountsService.findAll({
+                    recordsPerPage: 10000,
+                    sortBy: 'name',
+                    sortOrder: 'asc',
+                }))['records'],
+                users: (await UsersService.findAll({
+                    recordsPerPage: 10000,
+                    sortBy: 'first_name',
+                    sortOrder: 'asc',
+                }))['records'],
+                deals: (await DealsService.findAll({
+                    recordsPerPage: 10000,
+                    sortBy: 'deal_name',
+                    sortOrder: 'asc',
+                }))['records'],
+                status: [{
+                    label: 'Pending',
+                    value: 'pending'
+                }, {
+                    label: 'In progress',
+                    value: 'in_progress'
+                }, {
+                    label: 'Complete',
+                    value: 'complete',
+                }],
+                priority: [{
+                    label: 'Low',
+                    value: 'low'
+                }, {
+                    label: 'Medium',
+                    value: 'medium'
+                }, {
+                    label: 'High',
+                    value: 'high',
+                }]
+            }
+            return res.send({
+                success: true,
+                options
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message,
+            });
+        }
+    }
 };
