@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Attachments);
       this.hasMany(models.Deals);
       this.belongsTo(models.Users);
+      this.hasOne(models.Contacts);
     }
   }
   Accounts.init({

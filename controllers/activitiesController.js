@@ -6,7 +6,7 @@ const Joi = require('joi');
 const AccountsService = require("../services/accountsService");
 const ContactsService = require("../services/contactsService");
 const UsersService = require("../services/usersService");
-
+const DealsService = require("../services/dealsService");
 module.exports = {
     async create(req, res) {
         try {
@@ -114,6 +114,11 @@ module.exports = {
                 users: (await UsersService.findAll({
                     recordsPerPage: 10000,
                     sortBy: 'first_name',
+                    sortOrder: 'asc',
+                }))['records'],
+                deals: (await DealsService.findAll({
+                    recordsPerPage: 10000,
+                    sortBy: 'deal_name',
                     sortOrder: 'asc',
                 }))['records'],
             }

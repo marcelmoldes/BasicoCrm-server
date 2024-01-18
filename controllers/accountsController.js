@@ -3,6 +3,9 @@ const AccountsService = require('../services/accountsService.js')
 const accountValidatorSchema = require('../validators/accountsValidator');
 const {handleJoiErrors} = require("../helpers/validationHelper");
 const Joi = require("joi");
+const ContactsService = require("../services/contactsService");
+const UsersService = require("../services/usersService");
+const DealsService = require("../services/dealsService");
 
 module.exports = {
     async create(req, res) {
@@ -98,4 +101,26 @@ module.exports = {
             });
         }
     },
+    async getOptions(req, res) {
+        try {
+            await privateGuard(req)
+            const options = {
+                users: (await UsersService.findAll({
+                    recordsPerPage: 10000,
+                    sortBy: 'first_name',
+                    sortOrder: 'asc',
+                }))['records'],
+
+            }
+            return res.send({
+                success: true,
+                options
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message,
+            });
+        }
+    }
 };

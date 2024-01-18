@@ -1,10 +1,16 @@
-const {Accounts, Activities, Attachments, Deals, PhoneNumbers, Tasks, Addresses, Users} = require("../models");
+const {Accounts, Activities, Attachments,Contacts, Deals, PhoneNumbers, Tasks, Addresses, Users} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
 
 const include = [
     Users,
     PhoneNumbers,
-    Addresses
+    Addresses,
+    Deals,
+    Tasks,
+    Attachments,
+    Activities,
+    Contacts,
+
 ];
 
 module.exports = {
@@ -13,8 +19,9 @@ module.exports = {
         return await Accounts.create(data)
     },
     async findOne(options) {
+        const account = await Accounts.findOne(options);
         options.include = include;
-        return await Accounts.findOne(options);
+   return account
     },
     async findAll(query) {
         return await paginator(Accounts, query, ['industry', 'name', 'website'], {
