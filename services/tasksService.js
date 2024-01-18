@@ -1,4 +1,4 @@
-const {Tasks,Contacts,Accounts,Deals,Users, Attachments, Activities} = require("../models");
+const {Tasks,Contacts,Accounts,Deals,Users} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
 
 const include = [
@@ -8,7 +8,7 @@ const include = [
     },
     {
         model: Deals,
-        include: Users,
+        include: [Users,Accounts]
     },
     {
         model: Contacts,

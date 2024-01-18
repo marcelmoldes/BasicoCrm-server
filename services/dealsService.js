@@ -1,17 +1,24 @@
-const {Deals,Accounts,Attachments,Activities,Tasks,Users} = require("../models");
+const {Deals,Accounts,Attachments,Activities,Tasks,Users, Contacts} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
 
 const include = [
-    Accounts,
+    {
+        model: Accounts,
+        include: Users
+    },
+    {
+        model: Activities,
+        include: Users
+    },
+    {
+        model: Tasks,
+        include: [Accounts,Contacts]
+    },
     Attachments,
-    Activities,
-    Tasks,
     Users
 
 
 ];
-
-
 
 
 

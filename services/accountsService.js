@@ -5,11 +5,22 @@ const include = [
     Users,
     PhoneNumbers,
     Addresses,
-    Deals,
-    Tasks,
+    {
+        model: Deals,
+        include: Accounts
+    },
+    {model: Tasks,
+        include: [Accounts,Contacts]
+    },
     Attachments,
-    Activities,
-    Contacts,
+    {
+        model: Activities,
+        include: Users
+    },
+    {
+        model: Contacts,
+        include: Users
+    },
 
 ];
 

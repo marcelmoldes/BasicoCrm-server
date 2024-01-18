@@ -4,10 +4,20 @@ const {
 const {paginator} = require("../helpers/databaseHelper");
 
 const include = [
-    Contacts,
-    Accounts,
-    Deals,
-    Users
+    {
+        model: Contacts,
+        include: Users
+    },
+    {
+        model: Accounts,
+        include: Users
+    },
+    {
+        model: Deals,
+        include: [Users, Accounts]
+    },
+    Users,
+
 ]
 
 

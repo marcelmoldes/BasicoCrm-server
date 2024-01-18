@@ -23,4 +23,5 @@ require("./routes/phonenumbers.js")(app);
 require("./routes/tenants.js")(app);
 
 app.listen(8081);
+app.set('json replacer', (k, v) => (v === null ? undefined : v))
 console.log("Server Working")

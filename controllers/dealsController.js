@@ -3,6 +3,9 @@ const DealsService = require('../services/dealsService.js')
 const dealValidatorSchema = require('../validators/dealsValidator');
 const { handleJoiErrors } = require("../helpers/validationHelper");
 const Joi = require('joi');
+const ContactsService = require("../services/contactsService");
+const AccountsService = require("../services/accountsService");
+const UsersService = require("../services/usersService");
 
 module.exports = {
     async create(req, res) {
@@ -46,10 +49,10 @@ module.exports = {
     async findOne(req, res) {
         try {
             await privateGuard(req)
-            const deals = await DealsService.findByPk(req.params.id)
+            const deal = await DealsService.findByPk(req.params.id)
             return res.send({
                 success: true,
-                deals
+                deal
             })
         } catch (error) {
             return res.send({
@@ -94,4 +97,44 @@ module.exports = {
             });
         }
     },
+    async getOptions(req, res) {
+        try {
+            await privateGuard(req)
+            const options = {
+
+                accounts: (await AccountsService.findAll({
+                    recordsPerPage: 10000,
+                    sortBy: 'name',
+                    sortOrder: 'asc',
+                }))['records'],
+                users: (await UsersService.findAll({
+                    recordsPerPage: 10000,
+                    sortBy: 'first_name',
+                    sortOrder: 'asc',
+                }))['records'],
+                status: [{
+                    label: 'Pending',
+                    value: 'pending'
+                }, {
+                    label: 'In progress',
+                    value: 'in_progress'
+                }, {
+                    label: 'Complete',
+                    value: 'complete',
+                }],
+            }
+
+            return res.send({
+                success: true,
+                options
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message,
+            });
+
+        }
+
+    }
 };
