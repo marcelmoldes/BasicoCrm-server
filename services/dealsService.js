@@ -54,8 +54,23 @@ module.exports = {
         });
     },
     async getKpis() {
-        const deals = await sequelize.query("SELECT count(*) as count FROM `deals` WHERE status != 'complete'", { type: QueryTypes.SELECT });
+        const deals = await sequelize.query("SELECT count(*) as count FROM `deals` WHERE status IN ('pending','in_progress')", { type: QueryTypes.SELECT });
         return deals[0].count
+    },
+    async getStats() {
+        let stats = await sequelize.query(
+            "SELECT SUM(deal_value) as deal_value, MONTH(created_at) as month, YEAR(created_at) as year FROM basico_crm.deals GROUP BY YEAR(created_at), month(created_at) order by YEAR(created_at), MONTH(created_at);"
+        );
+        stats = stats[0].map((stat) => {
+            return {
+                label: `${stat.month}-${stat.year}`,
+                total: stat.deal_value,
+            };
+        });
+        return {
+            success: true,
+            stats,
+        }
     },
     async update(data, id) {
         const deal = await Deals.findByPk(id);

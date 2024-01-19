@@ -7,6 +7,7 @@ const ContactsService = require("../services/contactsService");
 const AccountsService = require("../services/accountsService");
 const UsersService = require("../services/usersService");
 const DealsService = require("../services/dealsService")
+const {taskStatusOptions, taskPriorityOptions} = require("../lib/options");
 
 module.exports = {
     async create(req, res) {
@@ -124,26 +125,8 @@ module.exports = {
                     sortBy: 'deal_name',
                     sortOrder: 'asc',
                 }))['records'],
-                status: [{
-                    label: 'Pending',
-                    value: 'pending'
-                }, {
-                    label: 'In progress',
-                    value: 'in_progress'
-                }, {
-                    label: 'Complete',
-                    value: 'complete',
-                }],
-                priority: [{
-                    label: 'Low',
-                    value: 'low'
-                }, {
-                    label: 'Medium',
-                    value: 'medium'
-                }, {
-                    label: 'High',
-                    value: 'high',
-                }]
+                status: taskStatusOptions,
+                priority: taskPriorityOptions,
             }
             return res.send({
                 success: true,

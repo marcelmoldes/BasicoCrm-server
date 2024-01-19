@@ -1,17 +1,9 @@
 'use strict';
 const {faker} = require("@faker-js/faker");
 const {Op} = require("sequelize");
+const {dealStatusOptions} = require("../lib/options");
 
-const statusOptions = [{
-    label: 'Pending',
-    value: 'pending'
-}, {
-    label: 'In progress',
-    value: 'in_progress'
-}, {
-    label: 'Complete',
-    value: 'complete',
-}];
+const statusOptions = [];
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -23,8 +15,11 @@ module.exports = {
             let account_id = faker.number.int({ min: 1, max: 100 });
             let deal_name = faker.lorem.word(20);
             let close_date = faker.date.anytime();
-            let status = statusOptions[Math.round(Math.random() * 2)].value;
-            let deal_value = faker.commerce.price({ min: 20000, max: 10000000 });
+
+
+
+            let status = dealStatusOptions[Math.round(Math.random() * (dealStatusOptions.length - 1))].value;
+            let deal_value = faker.commerce.price({ min: 1000, max: 10000 });
 
             const created_at = faker.date.past({
                 days: 365,

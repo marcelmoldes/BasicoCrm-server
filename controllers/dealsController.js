@@ -6,6 +6,7 @@ const Joi = require('joi');
 const ContactsService = require("../services/contactsService");
 const AccountsService = require("../services/accountsService");
 const UsersService = require("../services/usersService");
+const {dealStatusOptions} = require("../lib/options");
 
 module.exports = {
     async create(req, res) {
@@ -101,7 +102,6 @@ module.exports = {
         try {
             await privateGuard(req)
             const options = {
-
                 accounts: (await AccountsService.findAll({
                     recordsPerPage: 10000,
                     sortBy: 'name',
@@ -112,18 +112,8 @@ module.exports = {
                     sortBy: 'first_name',
                     sortOrder: 'asc',
                 }))['records'],
-                status: [{
-                    label: 'Pending',
-                    value: 'pending'
-                }, {
-                    label: 'In progress',
-                    value: 'in_progress'
-                }, {
-                    label: 'Complete',
-                    value: 'complete',
-                }],
+                status: dealStatusOptions,
             }
-
             return res.send({
                 success: true,
                 options

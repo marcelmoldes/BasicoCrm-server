@@ -11,7 +11,7 @@ module.exports = {
             return res.send({
                 success: true,
                 kpis: {
-                     accounts: await AccountsServices.getKpis(),
+                    accounts: await AccountsServices.getKpis(),
                     deals: await DealsServices.getKpis(),
                     activities: await ActivitiesServices.getKpis(),
                     tasks: await TasksServices.getKpis(),
@@ -23,7 +23,22 @@ module.exports = {
                 error: error.message
             })
         }
+    },
+    async getStats(req, res) {
+        try {
+            await privateGuard(req)
+            return res.send({
+                success: true,
+                stats: {
+                    deals: await DealsServices.getStats(),
 
-
+                }
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message
+            })
+        }
     }
 }
