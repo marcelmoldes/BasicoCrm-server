@@ -2,6 +2,17 @@
 const { faker } = require("@faker-js/faker");
 const {Op} = require("sequelize");
 
+const statusOptions = [{
+    label: 'Pending',
+    value: 'pending'
+}, {
+    label: 'In progress',
+    value: 'in_progress'
+}, {
+    label: 'Complete',
+    value: 'complete',
+}];
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
@@ -12,11 +23,11 @@ module.exports = {
             let contact_id = faker.number.int({ min: 1, max: 100 });
             let deal_id= faker.number.int({ min: 1, max: 100 });
             let account_id = faker.number.int({ min: 1, max: 100 });
-            let name  = faker.lorem.word(10)
-            let description  = faker.lorem.paragraph(2)
-            let due_date  = faker.date.anytime()
-            let status  = faker.word.adjective(100)
-            let priority  =faker.word.adjective(5)
+            let name  = faker.lorem.word(10);
+            let description  = faker.lorem.paragraph(2);
+            let due_date  = faker.date.anytime();
+            let status  = statusOptions[Math.round(Math.random() * 2)].value;
+            let priority  =faker.word.adjective(5);
 
             const created_at = faker.date.past({
                 days: 365,

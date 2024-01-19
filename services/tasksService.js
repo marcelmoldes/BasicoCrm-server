@@ -1,6 +1,11 @@
 const {Tasks,Contacts,Accounts,Deals,Users} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
 
+const {QueryTypes, Sequelize} = require("sequelize");
+const sequelize = new Sequelize("basico_crm", "root", "password", {
+    dialect: "mysql",
+});
+
 const include = [
     {
         model: Accounts,
@@ -21,6 +26,10 @@ module.exports = {
 
     async create(data) {
      return await Tasks.create(data)
+    },
+    async getKpis() {
+        const tasks = await sequelize.query("SELECT count(*) as count FROM `tasks` WHERE status != 'complete'", { type: QueryTypes.SELECT });
+        return tasks[0].count
     },
     async findOne(options) {
         options.include = include;

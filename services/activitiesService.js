@@ -2,6 +2,10 @@ const {
     Activities, Contacts, Accounts, Deals, Users
 } = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
+const {QueryTypes, Sequelize} = require("sequelize");
+const sequelize = new Sequelize("basico_crm", "root", "password", {
+    dialect: "mysql",
+});
 
 const include = [
     {
@@ -25,6 +29,10 @@ module.exports = {
 
     async create(data) {
      return await Activities.create(data)
+    },
+    async getKpis() {
+        const activities = await sequelize.query("SELECT count(*) as count FROM `activities`", { type: QueryTypes.SELECT });
+        return activities[0].count
     },
     async findOne(options) {
         options.include = include;

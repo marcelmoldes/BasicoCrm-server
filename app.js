@@ -21,6 +21,7 @@ require("./routes/attachments.js")(app);
 require("./routes/listconfigs.js")(app);
 require("./routes/phonenumbers.js")(app);
 require("./routes/tenants.js")(app);
+require("./routes/analytics.js")(app);
 
 app.listen(8081);
 app.set('json replacer', (k, v) => (v === null ? undefined : v))

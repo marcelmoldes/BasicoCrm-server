@@ -1,5 +1,12 @@
 const {Accounts, Activities, Attachments,Contacts, Deals, PhoneNumbers, Tasks, Addresses, Users} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
+const { Sequelize } = require('sequelize');
+const { QueryTypes } = require('sequelize');
+const sequelize = new Sequelize("basico_crm", "root", "password", {
+    dialect: "mysql",
+});
+
+
 
 const include = [
     Users,
@@ -32,7 +39,7 @@ module.exports = {
     async findOne(options) {
         const account = await Accounts.findOne(options);
         options.include = include;
-   return account
+        return account
     },
     async findAll(query) {
         return await paginator(Accounts, query, ['industry', 'name', 'website'], {
@@ -44,7 +51,10 @@ module.exports = {
             include
         });
     },
-
+    async getKpis() {
+        const accounts = await sequelize.query("SELECT count(*) as count FROM `accounts`", { type: QueryTypes.SELECT });
+        return accounts[0].count
+    },
     async update(data, id) {
         const account = await Accounts.findByPk(id);
         Object.assign(account, data)
