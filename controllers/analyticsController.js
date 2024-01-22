@@ -40,5 +40,25 @@ module.exports = {
                 error: error.message
             })
         }
+    },
+    async getFunnelStats(req, res) {
+        try {
+            await privateGuard(req)
+            return res.send({
+                success: true,
+                stats: {
+                    closed_lost: await DealsServices.getKpis('closed_lost'),
+                    closed_won: await DealsServices.getKpis('closed_won'),
+                    pending: await DealsServices.getKpis('pending'),
+                    in_progress: await DealsServices.getKpis('in_progress'),
+                }
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message
+            })
+        }
     }
+
 }

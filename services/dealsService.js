@@ -53,8 +53,13 @@ module.exports = {
             include
         });
     },
-    async getKpis() {
-        const deals = await sequelize.query("SELECT count(*) as count FROM `deals` WHERE status IN ('pending','in_progress')", { type: QueryTypes.SELECT });
+    async getKpis(status) {
+        let deals;
+        if(status) {
+            deals = await sequelize.query(`SELECT count(*) as count FROM deals WHERE status = '${status}'`, {type: QueryTypes.SELECT});
+        } else {
+            deals = await sequelize.query("SELECT count(*) as count FROM deals WHERE status IN ('pending','in_progress')", {type: QueryTypes.SELECT});
+        }
         return deals[0].count
     },
     async getStats() {
