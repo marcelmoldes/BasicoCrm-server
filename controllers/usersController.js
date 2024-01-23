@@ -3,20 +3,24 @@ const adminGuard = require('../guards/privateGuard')
 const UsersService = require('../services/usersService.js')
 const userValidatorSchema = require('../validators/userValidator');
 const { handleJoiErrors } = require("../helpers/validationHelper");
+const {userRoleOptions} = require("../lib/options");
+const privateGuard = require("../guards/privateGuard");
+const AccountsService = require("../services/accountsService");
 
 module.exports = {
     async create(req, res) {
         try {
-            await adminGuard(req)
+            const { tenant_id } = await adminGuard(req)
 
             // Validation logic
             try {
                 const validator = Joi.object(userValidatorSchema);
-                Joi.assert(req.body, validator, { abortEarly: false });
+                Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch(error) {
                 return res.send(handleJoiErrors(error));
             }
 
+            req.body.tenant_id = tenant_id;
             const user = await UsersService.create(req.body);
             return res.send({
                 success: true,
@@ -65,16 +69,13 @@ module.exports = {
     async update(req, res) {
         try {
             await adminGuard(req)
-
-            // Validation logic
             try {
                 delete userValidatorSchema.password;
                 const validator = Joi.object(userValidatorSchema);
-                Joi.assert(req.body, validator, { abortEarly: false });
+                Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch(error) {
                 return res.send(handleJoiErrors(error));
             }
-user
             const user = await UsersService.update(req.body, req.params.id);
             return res.send({
                 success: true,
@@ -101,4 +102,23 @@ user
             });
         }
     },
+    async getOptions(req, res) {
+        try {
+            await adminGuard(req)
+            const options = {
+                role: userRoleOptions,
+            }
+            return res.send({
+                success: true,
+                options
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message,
+            });
+
+        }
+    }
+
 };
