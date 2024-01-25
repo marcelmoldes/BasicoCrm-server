@@ -1,7 +1,7 @@
 const {Users, Activities, Contacts, Tasks, Deals, Accounts, Tenants} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
 const bcrypt = require("bcrypt");
-const {password} = require("../validators/userValidator");
+const {password} = require("../validators/usersValidator");
 
 
 const include = [

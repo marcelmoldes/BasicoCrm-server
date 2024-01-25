@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const adminGuard = require('../guards/privateGuard')
 const UsersService = require('../services/usersService.js')
-const userValidatorSchema = require('../validators/userValidator');
+const usersValidatorSchema = require('../validators/usersValidator');
 const { handleJoiErrors } = require("../helpers/validationHelper");
 const {userRoleOptions} = require("../lib/options");
 
@@ -11,7 +11,7 @@ module.exports = {
         try {
             const { tenant_id } = await adminGuard(req)
             try {
-                const validator = Joi.object(userValidatorSchema);
+                const validator = Joi.object(usersValidatorSchema);
                 Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch(error) {
                 return res.send(handleJoiErrors(error));
@@ -67,8 +67,8 @@ module.exports = {
         try {
             await adminGuard(req)
             try {
-                delete userValidatorSchema.password;
-                const validator = Joi.object(userValidatorSchema);
+                delete usersValidatorSchema.password;
+                const validator = Joi.object(usersValidatorSchema);
                 Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch(error) {
                 return res.send(handleJoiErrors(error));

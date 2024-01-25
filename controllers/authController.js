@@ -2,9 +2,11 @@ const jwtSecret = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
 const {Users} = require('../models')
 const Joi = require("joi");
-const userValidatorSchema = require("../validators/userValidator");
+const usersValidatorSchema = require("../validators/usersValidator");
+const tenantValidatorSchema = require("../validators/tenantsValidator");
 const {handleJoiErrors} = require("../helpers/validationHelper");
 const UsersService = require("../services/usersService");
+const TenantsService = require("../services/tenantsService");
 const privateGuard = require("../guards/privateGuard");
 const sgMail = require("@sendgrid/mail");
 const bcrypt = require("bcrypt");
@@ -14,12 +16,35 @@ module.exports = {
     async register(req, res) {
         try {
             try {
-                const validator = Joi.object(userValidatorSchema);
+                const validationSchema = { ...usersValidatorSchema, ...tenantValidatorSchema }
+                const validator = Joi.object(validationSchema);
                 Joi.assert(req.body, validator, {abortEarly: false});
             } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
-            const user = await UsersService.create(req.body);
+            const userData = {
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                email: req.body.email,
+                password: req.body.password,
+                role: 'admin'
+            }
+           const user = await UsersService.create(userData);
+            // Create tenant with user id
+            const tenantData = {
+                user_id: user.id,
+                name: req.body.name,
+                employees: req.body.employees,
+                industry: req.body.industry,
+                annual_revenue: req.body.annual_revenue,
+                company_name:req.body.company_name ,
+                website:req.body.first_name
+            }
+             const tenant = await TenantsService.create(tenantData);
+             // Update user with tenant id
+             user.tenant_id = tenant.id;
+             await user.save();
+
             return res.send({
                 success: true,
                 user,

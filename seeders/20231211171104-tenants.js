@@ -14,7 +14,7 @@ module.exports = {
             let annual_revenue  = faker.commerce.price({ min: 20000, max: 1000000 })
             let employees  = faker.string.numeric(5)
             let website  = faker.internet.url();
-            let company_name  = faker.person.jobType()
+
 
             const created_at = faker.date.past({
                 days: 365,
@@ -22,7 +22,6 @@ module.exports = {
             const tenant = {
                 user_id,
                 name,
-                company_name,
                 website,
                 industry,
                 annual_revenue,

@@ -8,9 +8,7 @@ module.exports = {
     async create(req, res) {
         try {
             await privateGuard(req)
-
-            try {
-                const validator = Joi.object(tenantValidatorSchema);
+            try {const validator = Joi.object(tenantValidatorSchema);
                 Joi.assert(req.body, validator, { abortEarly: false });
             } catch(error) {
                 return res.send(handleJoiErrors(error));
