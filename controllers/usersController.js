@@ -4,15 +4,12 @@ const UsersService = require('../services/usersService.js')
 const userValidatorSchema = require('../validators/userValidator');
 const { handleJoiErrors } = require("../helpers/validationHelper");
 const {userRoleOptions} = require("../lib/options");
-const privateGuard = require("../guards/privateGuard");
-const AccountsService = require("../services/accountsService");
+
 
 module.exports = {
     async create(req, res) {
         try {
             const { tenant_id } = await adminGuard(req)
-
-            // Validation logic
             try {
                 const validator = Joi.object(userValidatorSchema);
                 Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});

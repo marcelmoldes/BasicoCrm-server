@@ -1,17 +1,17 @@
 const {Users, Activities, Contacts, Tasks, Deals, Accounts, Tenants} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
+const bcrypt = require("bcrypt");
+const {password} = require("../validators/userValidator");
+
 
 const include = [
-
     Contacts,
     Tasks,
     Deals,
     Accounts,
     Tenants,
     Activities
-
 ];
-
 
 module.exports = {
     async create(data) {
@@ -19,6 +19,9 @@ module.exports = {
         if (emailFound) {
             throw new Error("User already exists")
         } else {
+            if(data.password) {
+                data.password = await bcrypt.hash(data.password,10)
+            }
             return await Users.create(data);
         }
     },
@@ -48,6 +51,15 @@ module.exports = {
         Object.assign(user, data)
         return await user.save()
     },
+    async changePassword(password, id) {
+        password = await bcrypt.hash(password,10)
+        return this.update({
+            password
+        }, id)
+    },
+
+
+
     async remove(id) {
         const user = await this.findByPk(id);
         if (!user) {

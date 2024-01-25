@@ -5,8 +5,9 @@ const Joi = require("joi");
 const userValidatorSchema = require("../validators/userValidator");
 const {handleJoiErrors} = require("../helpers/validationHelper");
 const UsersService = require("../services/usersService");
-const adminGuard = require("../guards/privateGuard");
+const privateGuard = require("../guards/privateGuard");
 const sgMail = require("@sendgrid/mail");
+const bcrypt = require("bcrypt");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = {
@@ -14,8 +15,8 @@ module.exports = {
         try {
             try {
                 const validator = Joi.object(userValidatorSchema);
-                Joi.assert(req.body, validator, { abortEarly: false });
-            } catch(error) {
+                Joi.assert(req.body, validator, {abortEarly: false});
+            } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
             const user = await UsersService.create(req.body);
@@ -35,11 +36,17 @@ module.exports = {
             const user = await Users.findOne({
                 where: {
                     email: req.body.email,
-                    password: req.body.password,
                 },
             });
-
             if (user) {
+
+                const passwordValid = await bcrypt.compare(req.body.password, user.password)
+                if(!passwordValid) {
+                    return res.send({
+                        success: false,
+                        error: "This password or email are incorrect"
+                    })
+                }
                 let token = jwt.sign(user.toJSON(), jwtSecret);
                 user.set("password", null);
                 return res.send({
@@ -63,17 +70,14 @@ module.exports = {
 
     async changePassword(req, res) {
         try {
-            await adminGuard(req)
-            const userFound = await Users.findByPk(req.params.id);
-            if (userFound.password !== req.body.currentPassword) {
+            const user = await privateGuard(req)
+            if(!await bcrypt.compare(req.body.currentPassword, user.password)) {
                 return res.send({
                     success: false,
                     error: "!You must provide your current password!",
                 });
             }
-            userFound.password = req.body.newPassword;
-            await userFound.save();
-
+            await UsersService.changePassword(req.body.newPassword, user.id);
             return res.send({
                 success: true,
             });
@@ -99,7 +103,7 @@ module.exports = {
                 });
             }
             const new_password = Math.random().toString(36).substring(2, 18);
-            user.password = new_password;
+            user.password = newPassword;
             user.save();
             const data = {
                 to: user.email,
@@ -107,7 +111,7 @@ module.exports = {
                 templateId: "d-f698d27f8c5f4bc7bf1b4b5c95cc1733",
                 personalizations: [
                     {
-                        to: [{ email: user.email }],
+                        to: [{email: user.email}],
                         dynamic_template_data: {
                             First_Name: user.first_name,
                             Password: user.password,
