@@ -7,13 +7,14 @@ const Joi = require('joi');
 module.exports = {
     async create(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             try {
                 const validator = Joi.object(contactValidatorSchema);
                 Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
+            req.body.tenant_id = tenant_id;
             const contact = await ContactsService.create(req.body);
             return res.send({
                 success: true,
@@ -30,7 +31,8 @@ module.exports = {
 
     async findAll(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
+            req.query.tenantId = tenant_id;
             const result = await ContactsService.findAll(req.query);
             return res.send({
                 success: true,

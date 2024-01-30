@@ -15,6 +15,9 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER
       },
+      tenant_id: {
+        type: Sequelize.INTEGER,
+      },
       website: {
         type: Sequelize.STRING
       },

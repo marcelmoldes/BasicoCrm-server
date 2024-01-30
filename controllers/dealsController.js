@@ -11,13 +11,14 @@ const {dealStatusOptions} = require("../lib/options");
 module.exports = {
     async create(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             try {
                 const validator = Joi.object(dealValidatorSchema);
                 Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch(error) {
                 return res.send(handleJoiErrors(error));
             }
+            req.body.tenant_id = tenant_id;
             const deal = await DealsService.create(req.body);
             return res.send({
                 success: true,
@@ -33,7 +34,8 @@ module.exports = {
 
     async findAll(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
+            req.query.tenantId = tenant_id;
             const result = await DealsService.findAll(req.query);
             return res.send({
                 success: true,
@@ -100,17 +102,19 @@ module.exports = {
     },
     async getOptions(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             const options = {
                 accounts: (await AccountsService.findAll({
                     recordsPerPage: 10000,
                     sortBy: 'name',
                     sortOrder: 'asc',
+                    tenantId: tenant_id
                 }))['records'],
                 users: (await UsersService.findAll({
                     recordsPerPage: 10000,
                     sortBy: 'first_name',
                     sortOrder: 'asc',
+                    tenantId: tenant_id
                 }))['records'],
                 status: dealStatusOptions,
             }

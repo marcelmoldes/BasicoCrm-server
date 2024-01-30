@@ -3,7 +3,6 @@ const {paginator} = require("../helpers/databaseHelper");
 const bcrypt = require("bcrypt");
 const {password} = require("../validators/usersValidator");
 
-
 const include = [
     Contacts,
     Tasks,
@@ -19,8 +18,8 @@ module.exports = {
         if (emailFound) {
             throw new Error("User already exists")
         } else {
-            if(data.password) {
-                data.password = await bcrypt.hash(data.password,10)
+            if (data.password) {
+                data.password = await bcrypt.hash(data.password, 10)
             }
             return await Users.create(data);
         }
@@ -30,12 +29,12 @@ module.exports = {
         return await Users.findOne(options);
     },
     async findAll(query) {
-        return await paginator(Users, query,{
+        return await paginator(Users, query, {
             include
         });
     },
     async findByPk(id) {
-        return await Users.findByPk(id,{
+        return await Users.findByPk(id, {
             include
         });
     },
@@ -52,12 +51,11 @@ module.exports = {
         return await user.save()
     },
     async changePassword(password, id) {
-        password = await bcrypt.hash(password,10)
+        password = await bcrypt.hash(password, 10)
         return this.update({
             password
         }, id)
     },
-
 
 
     async remove(id) {

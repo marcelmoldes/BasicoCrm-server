@@ -1,10 +1,9 @@
 const Joi = require('joi');
-const adminGuard = require('../guards/privateGuard')
+const adminGuard = require('../guards/adminGuard')
 const UsersService = require('../services/usersService.js')
 const usersValidatorSchema = require('../validators/usersValidator');
 const { handleJoiErrors } = require("../helpers/validationHelper");
 const {userRoleOptions} = require("../lib/options");
-
 
 module.exports = {
     async create(req, res) {
@@ -33,7 +32,8 @@ module.exports = {
 
     async findAll(req, res) {
         try {
-            await adminGuard(req)
+            const { tenant_id } = await adminGuard(req)
+            req.query.tenantId = tenant_id;
             const result = await UsersService.findAll(req.query);
             return res.send({
                 success: true,

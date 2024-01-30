@@ -8,6 +8,7 @@ const options = {
 }
 describe("Users endpoint basic tests", () => {
     const newUser = {
+        "tenant_id": 1,
         "first_name": "Test",
         "last_name": "User",
         "email": "test.user@gmail.com",

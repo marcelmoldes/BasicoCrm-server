@@ -8,7 +8,7 @@ const options = {
 }
 describe("ListConfigs endpoint basic tests", () => {
     const newListConfig =  {
-        "tenant_id": 5,
+        "tenant_id": 1,
         "field": "rgrgeg",
         "value":568
     }

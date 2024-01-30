@@ -8,6 +8,7 @@ const options = {
 }
 describe("Contacts endpoint basic tests", () => {
     const newContact =  {
+        "tenant_id": 1,
         "account_id": 1,
         "user_id": 1,
         "first_name": "Pete",

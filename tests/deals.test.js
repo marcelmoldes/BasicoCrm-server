@@ -8,6 +8,8 @@ const options = {
 }
 describe("Deals endpoint basic tests", () => {
     const newDeal =  {
+
+        "tenant_id": 1,
         "user_id": 19,
         "account_id": 7,
         "deal_name": "claudeo",

@@ -10,14 +10,14 @@ const DealsService = require("../services/dealsService");
 module.exports = {
     async create(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             try {
                 const validator = Joi.object(accountValidatorSchema);
                 Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch (error) {
                 return res.send(handleJoiErrors(error));
             }
-
+            req.body.tenant_id = tenant_id;
             const account = await AccountsService.create(req.body);
             return res.send({
                 success: true,
@@ -33,7 +33,8 @@ module.exports = {
 
     async findAll(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
+            req.query.tenantId = tenant_id;
             const result = await AccountsService.findAll(req.query);
             return res.send({
                 success: true,
@@ -103,14 +104,14 @@ module.exports = {
     },
     async getOptions(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             const options = {
                 users: (await UsersService.findAll({
                     recordsPerPage: 10000,
                     sortBy: 'first_name',
                     sortOrder: 'asc',
+                    tenantId: tenant_id
                 }))['records'],
-
             }
             return res.send({
                 success: true,

@@ -17,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Tenants.init({
-    "user_id": DataTypes.INTEGER,
-    "name": DataTypes.STRING(40),
-    "website": DataTypes.STRING(250),
-    "industry": DataTypes.STRING(40),
-    "annual_revenue": DataTypes.DECIMAL(15),
-    "employees": DataTypes.DECIMAL(10),
+    user_id: DataTypes.INTEGER,
+    name: DataTypes.STRING(40),
+    website: DataTypes.STRING(250),
+    industry: DataTypes.STRING(40),
+    annual_revenue: DataTypes.DECIMAL(15),
+    employees: DataTypes.DECIMAL(10),
 
   }, {
     sequelize,

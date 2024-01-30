@@ -10,7 +10,6 @@ module.exports = {
         const objectsToCreate = 100;
         const records = [];
         for (let i = 0; i < objectsToCreate; i++) {
-            let tenant_id = faker.number.int({ min: 1, max: 100 })
             let value = faker.string.numeric(5)
             let field =faker.word.adjective(5)
 
@@ -18,10 +17,9 @@ module.exports = {
                 days: 365,
             });
             const list_config = {
-                tenant_id,
                 value,
                 field,
-
+                tenant_id: 1,
                 created_at: created_at,
                 updated_at: created_at
             };

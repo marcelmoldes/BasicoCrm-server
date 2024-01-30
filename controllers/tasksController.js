@@ -12,15 +12,14 @@ const {taskStatusOptions, taskPriorityOptions} = require("../lib/options");
 module.exports = {
     async create(req, res) {
         try {
-            await privateGuard(req)
-
+            const { tenant_id } = await privateGuard(req)
             try {
                 const validator = Joi.object(taskValidatorSchema);
                 Joi.assert(req.body, validator, {abortEarly: false, allowUnknown: true});
             } catch(error) {
                 return res.send(handleJoiErrors(error));
             }
-
+            req.body.tenant_id = tenant_id;
             const task = await TasksService.create(req.body);
             return res.send({
                 success: true,
@@ -36,7 +35,8 @@ module.exports = {
 
     async findAll(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
+            req.query.tenantId = tenant_id;
             const result = await TasksService.findAll(req.query);
             return res.send({
                 success: true,
@@ -103,27 +103,31 @@ module.exports = {
     },
     async getOptions(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             const options = {
                 contacts: (await ContactsService.findAll({
                     recordsPerPage: 10000,
                     sortBy: 'first_name',
                     sortOrder: 'asc',
+                    tenantId: tenant_id
                 }))['records'],
                 accounts: (await AccountsService.findAll({
                     recordsPerPage: 10000,
                     sortBy: 'name',
                     sortOrder: 'asc',
+                    tenantId: tenant_id
                 }))['records'],
                 users: (await UsersService.findAll({
                     recordsPerPage: 10000,
                     sortBy: 'first_name',
                     sortOrder: 'asc',
+                    tenantId: tenant_id
                 }))['records'],
                 deals: (await DealsService.findAll({
                     recordsPerPage: 10000,
                     sortBy: 'deal_name',
                     sortOrder: 'asc',
+                    tenantId: tenant_id
                 }))['records'],
                 status: taskStatusOptions,
                 priority: taskPriorityOptions,

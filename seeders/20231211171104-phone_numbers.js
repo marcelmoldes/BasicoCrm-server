@@ -25,9 +25,9 @@ module.exports = {
                 days: 365,
             });
             const phone_number = {
+                tenant_id: 1,
                 account_id,
                 contact_id,
-                tenant_id,
                 country_code,
                 number,
                 created_at: created_at,

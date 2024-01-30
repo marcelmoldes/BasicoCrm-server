@@ -8,6 +8,7 @@ const options = {
 }
 describe("PhoneNumbers endpoint basic tests", () => {
     const newPhoneNumber=  {
+        "tenant_id": 1,
         "account_id": 1,
         "country_code": "VG",
         "number": "981389525"

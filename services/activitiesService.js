@@ -21,17 +21,14 @@ const include = [
         include: [Users, Accounts]
     },
     Users,
-
 ]
 
-
 module.exports = {
-
     async create(data) {
-     return await Activities.create(data)
+        return await Activities.create(data)
     },
-    async getKpis() {
-        const activities = await sequelize.query("SELECT count(*) as count FROM `activities`", { type: QueryTypes.SELECT });
+    async getKpis(tenant_id) {
+        const activities = await sequelize.query("SELECT count(*) as count FROM `activities` WHERE tenant_id = '${tenant_id}'", {type: QueryTypes.SELECT});
         return activities[0].count
     },
     async findOne(options) {
@@ -46,13 +43,12 @@ module.exports = {
         });
     },
     async findByPk(id) {
-        const activity = await Activities.findByPk(id,{
+        const activity = await Activities.findByPk(id, {
             include
         });
         activity.completed = activity.completed === 1
         return activity;
     },
-
     async update(data, id) {
         const activity = await Activities.findByPk(id);
         Object.assign(activity, data)

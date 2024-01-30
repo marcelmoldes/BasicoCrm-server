@@ -21,6 +21,7 @@ module.exports = {
                 days: 365,
             });
             const activity = {
+                tenant_id: 1,
                 user_id,
                 contact_id,
                 account_id,

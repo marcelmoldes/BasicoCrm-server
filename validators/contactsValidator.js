@@ -11,7 +11,6 @@ module.exports = {
     annual_revenue: Joi.number().min(3).max(1000000).required(),
     lead_status: Joi.string().alphanum().min(3).max(50).required(),
     industry: Joi.string().alphanum().min(3).max(100).required(),
-    notes: Joi.string().min(3).max(50).required(),
     title: Joi.string().alphanum().min(3).max(100).required(),
     Address: Joi.object(addressValidatorSchema),
     PhoneNumber: Joi.object(phonenumbersValidatorSchema)

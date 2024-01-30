@@ -23,6 +23,7 @@ module.exports = {
                 days: 365,
             });
             const task = {
+                tenant_id: 1,
                 user_id,
                 contact_id,
                 deal_id,

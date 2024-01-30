@@ -9,6 +9,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      tenant_id: {
+        type: Sequelize.INTEGER,
+      },
       account_id: {
         type: Sequelize.INTEGER
       },

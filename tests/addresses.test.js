@@ -8,6 +8,7 @@ const options = {
 }
 describe("Addresses endpoint basic tests", () => {
     const newAddress =  {
+        "tenant_id": 1,
         "account_id": 1,
         "street_address1": "gergergrg",
         "street_address2": "frwrgre",

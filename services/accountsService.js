@@ -1,12 +1,20 @@
-const {Accounts, Activities, Attachments,Contacts, Deals, PhoneNumbers, Tasks, Addresses, Users} = require("../models");
+const {
+    Accounts,
+    Activities,
+    Attachments,
+    Contacts,
+    Deals,
+    PhoneNumbers,
+    Tasks,
+    Addresses,
+    Users
+} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
-const { Sequelize } = require('sequelize');
-const { QueryTypes } = require('sequelize');
+const {Sequelize} = require('sequelize');
+const {QueryTypes} = require('sequelize');
 const sequelize = new Sequelize("basico_crm", "root", "password", {
     dialect: "mysql",
 });
-
-
 
 const include = [
     Users,
@@ -16,8 +24,9 @@ const include = [
         model: Deals,
         include: Accounts
     },
-    {model: Tasks,
-        include: [Accounts,Contacts]
+    {
+        model: Tasks,
+        include: [Accounts, Contacts]
     },
     Attachments,
     {
@@ -28,7 +37,6 @@ const include = [
         model: Contacts,
         include: Users
     },
-
 ];
 
 module.exports = {
@@ -51,8 +59,8 @@ module.exports = {
             include
         });
     },
-    async getKpis() {
-        const accounts = await sequelize.query("SELECT count(*) as count FROM `accounts`", { type: QueryTypes.SELECT });
+    async getKpis(tenant_id) {
+        const accounts = await sequelize.query("SELECT count(*) as count FROM `accounts` WHERE tenant_id = '${tenant_id}'", {type: QueryTypes.SELECT});
         return accounts[0].count
     },
     async update(data, id) {

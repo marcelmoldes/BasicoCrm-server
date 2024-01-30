@@ -18,6 +18,7 @@ module.exports = {
                 days: 365,
             });
             const attachment = {
+                tenant_id: 1,
                 name,
                 path,
                 deal_id,

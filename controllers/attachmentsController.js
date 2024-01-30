@@ -7,13 +7,14 @@ const Joi = require('joi');
 module.exports = {
     async create(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             try {
                 const validator = Joi.object(attachmentValidatorSchema);
                 Joi.assert(req.body, validator, { abortEarly: false });
             } catch(error) {
                 return res.send(handleJoiErrors(error));
             }
+            req.body.tenant_id = tenant_id;
             const attachment = await AttachmentsService.create(req.body);
             return res.send({
                 success: true,
@@ -29,7 +30,8 @@ module.exports = {
 
     async findAll(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
+            req.query.tenantId = tenant_id;
             const result = await AttachmentsService.findAll(req.query);
             return res.send({
                 success: true,

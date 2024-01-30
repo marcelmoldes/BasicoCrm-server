@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Activities.init({
+    tenant_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
     contact_id: DataTypes.INTEGER,
     account_id: DataTypes.INTEGER,

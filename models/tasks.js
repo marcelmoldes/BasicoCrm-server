@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Tasks.init({
+        tenant_id: DataTypes.INTEGER,
         contact_id: DataTypes.INTEGER,
         user_id: DataTypes.INTEGER,
         deal_id: DataTypes.INTEGER,

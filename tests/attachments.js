@@ -8,6 +8,7 @@ const options = {
 }
 describe("Attachments endpoint basic tests", () => {
     const newAttachment =  {
+        "tenant_id": 1,
         "account_id": 5,
         "name": "hgdrgrr",
         "path": "dgdgdg",

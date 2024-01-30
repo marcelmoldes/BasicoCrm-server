@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Attachments.init({
+    tenant_id: DataTypes.INTEGER,
     name: DataTypes.STRING(50),
     path: DataTypes.STRING(200),
     deal_id: DataTypes.INTEGER,

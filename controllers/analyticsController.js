@@ -7,14 +7,14 @@ const TasksServices = require('../services/tasksService.js')
 module.exports = {
     async getKpis(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             return res.send({
                 success: true,
                 kpis: {
-                    accounts: await AccountsServices.getKpis(),
-                    deals: await DealsServices.getKpis(),
-                    activities: await ActivitiesServices.getKpis(),
-                    tasks: await TasksServices.getKpis(),
+                    accounts: await AccountsServices.getKpis(tenant_id),
+                    deals: await DealsServices.getKpis(false, tenant_id),
+                    activities: await ActivitiesServices.getKpis(tenant_id),
+                    tasks: await TasksServices.getKpis(tenant_id),
                 }
             })
         } catch (error) {
@@ -26,12 +26,11 @@ module.exports = {
     },
     async getStats(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             return res.send({
                 success: true,
                 stats: {
-                    deals: await DealsServices.getStats(),
-
+                    deals: await DealsServices.getStats(tenant_id),
                 }
             })
         } catch (error) {
@@ -43,14 +42,14 @@ module.exports = {
     },
     async getFunnelStats(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             return res.send({
                 success: true,
                 stats: {
-                    closed_lost: await DealsServices.getKpis('closed_lost'),
-                    closed_won: await DealsServices.getKpis('closed_won'),
-                    pending: await DealsServices.getKpis('pending'),
-                    in_progress: await DealsServices.getKpis('in_progress'),
+                    closed_lost: await DealsServices.getKpis('closed_lost', tenant_id),
+                    closed_won: await DealsServices.getKpis('closed_won', tenant_id),
+                    pending: await DealsServices.getKpis('pending', tenant_id),
+                    in_progress: await DealsServices.getKpis('in_progress', tenant_id),
                 }
             })
         } catch (error) {

@@ -5,13 +5,9 @@ const include = [
     Contacts,
     Accounts,
     Tenants,
-
-
 ]
 
-
 module.exports = {
-
     async create(data) {
      return await Addresses.create(data)
     },
@@ -28,9 +24,7 @@ module.exports = {
         return await Addresses.findByPk(id,{
             include
         });
-
     },
-
     async update(data, id) {
         const address = await Addresses.findByPk(id);
         Object.assign(address, data)

@@ -28,6 +28,7 @@ module.exports = {
                 days: 365,
             });
             const contact = {
+                tenant_id: 1,
              account_id,
                 user_id,
                 first_name,

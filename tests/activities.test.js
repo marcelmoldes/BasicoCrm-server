@@ -8,6 +8,7 @@ const options = {
 }
 describe("Activities endpoint basic tests", () => {
     const newActivity=  {
+        "tenant_id": 1,
         "user_id": 28,
         "contact_id": 16,
         "account_id": 67,

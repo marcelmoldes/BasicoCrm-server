@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     Contacts.init({
+        tenant_id: DataTypes.INTEGER,
         account_id: DataTypes.INTEGER,
         user_id: DataTypes.INTEGER,
         first_name: DataTypes.STRING,

@@ -1,16 +1,13 @@
-const {PhoneNumbers,Contacts,Tenants,Accounts} = require("../models");
+const {PhoneNumbers, Contacts, Tenants, Accounts} = require("../models");
 const {paginator} = require("../helpers/databaseHelper");
 
 const include = [
     Contacts,
     Tenants,
     Accounts
-
-
 ]
 
 module.exports = {
-
     async create(data) {
         return PhoneNumbers.create(data)
     },
@@ -19,12 +16,12 @@ module.exports = {
         return await PhoneNumbers.findOne(options);
     },
     async findAll(query) {
-        return await paginator(PhoneNumbers, query, ['country_code', 'number'],{
+        return await paginator(PhoneNumbers, query, ['country_code', 'number'], {
             include
         });
     },
     async findByPk(id) {
-        return await PhoneNumbers.findByPk(id,{
+        return await PhoneNumbers.findByPk(id, {
             include
         });
     },

@@ -8,6 +8,7 @@ const options = {
 }
 describe("Accounts endpoint basic tests", () => {
     const newAccount =  {
+        "tenant_id": 1,
         "name": "dgtduitg",
         "user_id": 2,
         "website": "www.gmail.com",

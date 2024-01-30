@@ -21,6 +21,7 @@ module.exports = {
                 days: 365,
             });
             const account = {
+                tenant_id: 1,
                 name,
                 user_id,
                 website,

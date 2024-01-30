@@ -7,14 +7,13 @@ const Joi = require('joi');
 module.exports = {
     async create(req, res) {
         try {
-            await privateGuard(req)
+            const { tenant_id } = await privateGuard(req)
             try {const validator = Joi.object(tenantValidatorSchema);
                 Joi.assert(req.body, validator, { abortEarly: false });
             } catch(error) {
                 return res.send(handleJoiErrors(error));
             }
-
-
+            req.body.tenant_id = tenant_id;
             const tenant = await TenantsService.create(req.body);
             return res.send({
                 success: true,

@@ -12,6 +12,9 @@ module.exports = {
       user_id: {
         type: Sequelize.STRING
       },
+      tenant_id: {
+        type: Sequelize.INTEGER,
+      },
       account_id: {
         type: Sequelize.STRING
       },

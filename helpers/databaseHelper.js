@@ -9,7 +9,8 @@ module.exports = {
             recordsPerPage = 10,
             pageNumber = 1,
             sortBy = 'created_at',
-            sortOrder = 'desc'
+            sortOrder = 'desc',
+            tenantId
         } = query;
 
         const options = {
@@ -17,7 +18,10 @@ module.exports = {
             offset: recordsPerPage * (pageNumber - 1),
             order: [
                 [sortBy, sortOrder],
-            ]
+            ],
+            where: {
+                tenant_id: tenantId
+            }
         };
 
         if(searchString) {

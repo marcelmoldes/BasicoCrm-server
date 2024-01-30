@@ -1,5 +1,3 @@
-
-
 'use strict';
 const {faker} = require("@faker-js/faker");
 const {Op} = require("sequelize");
@@ -30,7 +28,7 @@ module.exports = {
             const address = {
                 account_id,
                 contact_id,
-                tenant_id,
+                tenant_id: 1,
                 street_address1,
                 street_address2,
                 city,

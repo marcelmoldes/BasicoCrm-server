@@ -30,7 +30,6 @@ module.exports = {
                 role: 'admin'
             }
            const user = await UsersService.create(userData);
-            // Create tenant with user id
             const tenantData = {
                 user_id: user.id,
                 name: req.body.name,
@@ -38,10 +37,9 @@ module.exports = {
                 industry: req.body.industry,
                 annual_revenue: req.body.annual_revenue,
                 company_name:req.body.company_name ,
-                website:req.body.first_name
+                website:req.body.website
             }
              const tenant = await TenantsService.create(tenantData);
-             // Update user with tenant id
              user.tenant_id = tenant.id;
              await user.save();
 
@@ -116,30 +114,31 @@ module.exports = {
 
     async forgotPassword(req, res) {
         try {
-            const emailFound = await Users.findOne({
+            const user = await Users.findOne({
                 where: {
                     email: req.body.email,
                 },
             });
-            if (!emailFound) {
+            if (!user) {
                 return res.send({
                     success: false,
                     error: "This account does not exist, please try again",
                 });
             }
-            const new_password = Math.random().toString(36).substring(2, 18);
-            user.password = newPassword;
-            user.save();
-            const data = {
+            const new_password = Math.random().toString(36).substring(2, 18)
+            user.password = await bcrypt.hash(new_password, 10);
+             await  user.save();
+             const data = {
                 to: user.email,
                 from: "moldesmarcel41@gmail.com",
+                subject: "Your new password",
                 templateId: "d-f698d27f8c5f4bc7bf1b4b5c95cc1733",
                 personalizations: [
                     {
                         to: [{email: user.email}],
                         dynamic_template_data: {
                             First_Name: user.first_name,
-                            Password: user.password,
+                            Password: new_password,
                         },
                     },
                 ],
