@@ -20,6 +20,7 @@ module.exports = {
         } else {
             if (data.password) {
                 data.password = await bcrypt.hash(data.password, 10)
+
             }
             return await Users.create(data);
         }

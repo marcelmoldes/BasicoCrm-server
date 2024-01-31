@@ -12,7 +12,7 @@ module.exports = {
                 success: true,
                 kpis: {
                     accounts: await AccountsServices.getKpis(tenant_id),
-                    deals: await DealsServices.getKpis(false, tenant_id),
+                    deals: await DealsServices.getKpis(tenant_id),
                     activities: await ActivitiesServices.getKpis(tenant_id),
                     tasks: await TasksServices.getKpis(tenant_id),
                 }
