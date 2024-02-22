@@ -52,7 +52,7 @@ module.exports = {
     },
     async getStats(tenant_id) {
         let stats = await sequelize.query(
-            `SELECT SUM(deal_value) as deal_value, MONTH(created_at) as month, YEAR(created_at) as year FROM basico_crm.deals WHERE tenant_id = '${tenant_id}' GROUP BY YEAR(created_at), month(created_at) order by YEAR(created_at), MONTH(created_at);`
+            `SELECT SUM(deal_value) as deal_value, MONTH(created_at) as month, YEAR(created_at) as year FROM deals WHERE tenant_id = '${tenant_id}' GROUP BY YEAR(created_at), month(created_at) order by YEAR(created_at), MONTH(created_at);`
         );
         stats = stats[0].map((stat) => {
             return {

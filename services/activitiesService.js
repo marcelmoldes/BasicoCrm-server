@@ -28,7 +28,7 @@ module.exports = {
         return await Activities.create(data)
     },
     async getKpis(tenant_id) {
-        const activities = await sequelize.query("SELECT count(*) as count FROM `activities` WHERE tenant_id = '${tenant_id}'", {type: QueryTypes.SELECT});
+        const activities = await sequelize.query(`SELECT count(*) as count FROM activities WHERE tenant_id = '${tenant_id}'`, {type: QueryTypes.SELECT});
         return activities[0].count
     },
     async findOne(options) {

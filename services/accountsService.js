@@ -60,7 +60,7 @@ module.exports = {
         });
     },
     async getKpis(tenant_id) {
-        const accounts = await sequelize.query("SELECT count(*) as count FROM `accounts` WHERE tenant_id = '${tenant_id}'", {type: QueryTypes.SELECT});
+        const accounts = await sequelize.query(`SELECT count(*) as count FROM accounts WHERE tenant_id = '${tenant_id}'`, {type: QueryTypes.SELECT});
         return accounts[0].count
     },
     async update(data, id) {

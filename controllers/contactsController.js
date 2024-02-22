@@ -3,6 +3,8 @@ const ContactsService = require('../services/contactsService.js')
 const contactValidatorSchema = require('../validators/contactsValidator');
 const {handleJoiErrors} = require("../helpers/validationHelper");
 const Joi = require('joi');
+const {leadSource} = require("../lib/options");
+const adminGuard = require("../guards/adminGuard");
 
 module.exports = {
     async create(req, res) {
@@ -97,4 +99,22 @@ module.exports = {
             });
         }
     },
+    async getOptions(req, res) {
+        try {
+            await adminGuard(req)
+            const options = {
+                role: leadSource,
+            }
+            return res.send({
+                success: true,
+                options
+            })
+        } catch (error) {
+            return res.send({
+                success: false,
+                error: error.message,
+            });
+
+        }
+    }
 };
