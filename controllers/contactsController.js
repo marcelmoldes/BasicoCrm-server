@@ -3,7 +3,7 @@ const ContactsService = require('../services/contactsService.js')
 const contactValidatorSchema = require('../validators/contactsValidator');
 const {handleJoiErrors} = require("../helpers/validationHelper");
 const Joi = require('joi');
-const { leadSourceOptions, leadStatusOptions} = require("../lib/options");
+const { leadSourceOptions, leadStatusOptions, industryOptions} = require("../lib/options");
 const adminGuard = require("../guards/adminGuard");
 
 module.exports = {
@@ -104,7 +104,8 @@ module.exports = {
             await adminGuard(req)
             const options = {
                 lead_source: leadSourceOptions,
-                lead_status: leadStatusOptions
+                lead_status: leadStatusOptions,
+                industry : industryOptions
             }
             return res.send({
                 success: true,
